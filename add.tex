@@ -338,9 +338,9 @@ Come corollario, ricaviamo la disuguaglianza di Chebyshev: data una V.A. X con m
 \end{displaymath}
 Otteniamo infine la \textbf{legge debole dei grandi numeri}. \textit{No, non quella con cui giustificate il vostro provarci con ogni essere vivente femminile.} Sia $X_1,X_2,...$ una successione di variabili aleatorie i.i.d\textit{(indipendenti, identicamente distribuite)}, tutte con media $\mu$. Allora, per ogni $\epsilon >0$:
 \begin{displaymath}
-    P\left(\left|\frac{X_1+...+X_n}{n} - \mu\right|>\epsilon \right)\rightarrow0\hspace{10px}\mbox{quando}n\rightarrow\infty
+    P\left(\left|\frac{X_1+...+X_n}{n} - \mu\right|>\epsilon \right)\rightarrow0\hspace{10px}\mbox{quando }n\rightarrow\infty
 \end{displaymath}
-\textit{Ora, vi chiederete: cosa me ne faccio? Posso spiegarla alle tipe in discoteca?\textbf{No.}} Una applicazione interessante è la seguente: supponiamo di ripetere in successione molte copie indipendenti di un esperimento, in ciascuna delle quali può verificarsi un certo evento E:
+\textit{Ora, vi chiederete: cosa me ne faccio? Posso spiegarla alle tipe in discoteca?\textbf{ No.}} Un'applicazione interessante è la seguente: supponiamo di ripetere in successione molte copie indipendenti di un esperimento, in ciascuna delle quali può verificarsi un certo evento E:
 \begin{displaymath}
     X_i:=
     \begin{cases}
@@ -353,4 +353,39 @@ la sommatoria $X_1+...+X_n$ rappresenta il numero di prove - tra le prime n - in
     E[X_i]=P(X_i=1)=P(E)
 \end{displaymath}
 si deduce che la frazione delle \textit{n} prove nelle quali si realizza E, tende alla probabilità $P(E)$.
+\section{Modelli di variabili aleatorie}
+\textit{Siamo giunti a una sezione tanto interessante, quanto fastidiosa: quella in cui dovete ricordare uno sh*t ton di roba}.
+\subsection{Variabili aleatorie di Bernoulli e binomiali}
+Supponiamo di fare un esperimento che ha solo due esiti, \textit{successo e fallimento}. Sappiamo che
+\begin{gather*}
+    P(X=0)=1-p\\ 
+    P(X=1)=p
+\end{gather*}
+Una V.A. con funzione di massa di probabilità come questa, è detta \textbf{Bernoulliana}. Il suo valore atteso $E[X] = p$.
+Supponiamo ora di realizzare n esperimenti, ciascuno dei quali è descritto da una Bernoulliana. Se X denota il numero totale di successi, X si dice V.A. binomiale di parametri $(n,p)$. La funzione di massa di probabilità è data da:
+\begin{displaymath}
+    P(X=i)={n \choose i} p^i(1-p)^{n-i}
+\end{displaymath}
+con il solito coefficiente binomiale
+\begin{displaymath}
+    {n \choose i} := \frac{n!}{i!(n-i)!}
+\end{displaymath}
+Si noti che la somma delle probabilità di tutti i valori possibili è ovviamente 1.
+\begin{displaymath}
+    \sum_iP(X=i)=[p+(1-p)]^n=1
+\end{displaymath}
+Osserviamo che se $X_1$ e $X_2$ sono binomiali di parametri $(n_1,p)$ e $(n_2,p)$ e sono indipendenti, allora la somma $X_1+X_2$ è binomiale di parametri $(n_1+n_2,p)$.
+\subsubsection{Calcolo esplicito della distribuzione binomiale}
+Supponiamo che X sia binomiale di parametri $(n,p)$. Per poter calcolare operativamente la funzione di ripartizione:
+\begin{displaymath}
+    P(X\le i) = \sum_{k=0}^i {n \choose i} p^k (1-p)^{n-k}
+\end{displaymath}
+o la funzione di massa:
+\begin{displaymath}
+    P(X=i) = {n \choose i} p^i(1-p)^{n-1}
+\end{displaymath}
+è molto utile sapere che 
+\begin{displaymath}
+    P(X=k+1)=\frac{p}{1-p}\frac{n-k}{k+1}P(X=k)
+\end{displaymath}
 \end{document}

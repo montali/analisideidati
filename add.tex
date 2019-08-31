@@ -388,4 +388,91 @@ o la funzione di massa:
 \begin{displaymath}
     P(X=k+1)=\frac{p}{1-p}\frac{n-k}{k+1}P(X=k)
 \end{displaymath}
+\subsection{Variabili aleatorie di Poisson}
+Le variabili aleatorie di Poisson assumono solo valori interi non negativi.
+In altri termini, definiamo \textit{una variabile aleatoria X che assuma i valori 0,1,2...} \textbf{poissoniana} di parametro $\lambda$, $\lambda>0$, se la sua funzione di massa di probabilità è data da
+\begin{displaymath}
+    P(X=i) = \frac{\lambda^i}{i!}e^{-\lambda}
+\end{displaymath}
+Calcoliamo la generatrice dei momenti $E[e^{tX}] = e^{-\lambda}e^{\lambda e^t}$, per poi derivarla e calcolarla in $X=0$.
+Troviamo quindi che 
+\begin{gather*}
+    E[X] = \phi'(0) = \lambda\\
+    Var(X) = \phi''(0)-E[X]^2 = \lambda
+\end{gather*}
+Una caratteristica interessante della poissoniana è che può essere utilizzata come approssimazione di una binomiale di parametri $(n,p)$, quando $n$ è molto grande e $p$ molto piccolo. 
+Ponendo $\lambda=np$:
+\begin{displaymath}
+    P(X=i) \approx \frac{\lambda^i}{i!}e^{-\lambda}
+\end{displaymath}
+In altri termini, il totale dei successi di un numero n molto elevato di ripetizioni dell'esperimento, è una variabile aleatorie di con distribuzione approsimativamente di Poisson, con media $\lambda=np$.
+\subsubsection{Calcolo esplicito della distribuzione di Poisson}
+Se X è una variabile aleatoria di Poisson di media $\lambda$, allora
+\begin{displaymath}
+    \frac{P(X=i+1)}{P(X=i)}=\frac{\lambda^{i+1}e^{-\lambda}}{(i+1)!}\frac{i!}{\lambda^i e^{-\lambda}}=\frac{\lambda}{i+1}
+\end{displaymath}
+\textit{A cosa serve sto pippozzo? }Possiamo usarla per calcolare, a partire da $P(X=0) = e^{-\lambda}$, tutti gli altri. Ad esempio:
+\begin{gather*}
+    P(X=1) = \lambda P(X=0)\\
+    P(X=2) = \frac{\lambda}{2} P(X=1)
+\end{gather*}
+\subsection{Variabili aleatorie ipergeometriche}
+Una scatola contiene N batterie accettabili, ed M difettose. Si estraggono senza rimessa $n$ batterie, dando pari probabilità a ciascuno degli ${{N+M} \choose n}$ sottoinsiemi possibili. Se denotiamo con X il numero di batterie accettabili estratte,
+\begin{displaymath}
+    P(X=i)=\frac{{N \choose i} {N \choose {n-i}}}{{{N+M} \choose n}}\hspace{10px}i=0,1,...,n
+\end{displaymath}
+Una V.A. con massa di probabilità data da questa equazione, è detta \textbf{variabile aleatoria ipergeometrica} di parametri N, M e $n$.
+\subsection{Variabili aleatorie uniformi}
+Una variabile aleatoria continua si dice uniforme sull'intervallo $[\alpha,\beta]$, se ha funzione di densità data da:
+\begin{displaymath}
+    f(x)=
+    \begin{cases}
+        \frac{1}{\beta-\alpha} \mbox{ se }\alpha\le x \le \beta\\
+        0\hspace{10px}\mbox{altrimenti} 
+    \end{cases}
+\end{displaymath}
+Si noti che soddisfa le condizioni per essere una densità di probabilità, in quanto
+\begin{displaymath}
+    \int_{-\infty}^\infty f(x)dx =\frac{1}{\beta-\alpha}\int_\alpha^\beta dx=1
+\end{displaymath}
+Per poter assumere la distribuzione uniforme, nella pratica, occorre che la V.A. abbia come valori possibili i punti di un intervallo limitato $[\alpha,\beta]$, inoltre si deve poter supporre che essa abbia le stesse probabilità di cadere vicino a un qualunque punto dell'intervallo.
+La probabilità che una V.A. X, uniforme su $[\alpha,\beta]$ è pari al rapport tra le lunghezze dei due intervalli,. Infatti, se $[a,b]$ è contenuto in $[\alpha,\beta]$
+\begin{displaymath}
+    P(a<X<b)=\frac{1}{\beta-\alpha}\int_a^b dx = \frac{b-a}{\beta-\alpha}
+\end{displaymath}
+\subsection{Variabili aleatorie normali}
+Questa è la sezione più applicabile alla vita reale. \textit{Quella che, a forza di studiare statistica, avete dimenticato.} 
+Una variabile aleatoria X si dice \textbf{normale} oppure \textbf{gaussiana} di parametri $\mu,\sigma^2$ e si scrive $X \sim N(\mu,\sigma^2)$ se X ha funzione di densità data da
+\begin{displaymath}
+    f(x)= \frac{1}{\sqrt{2\pi}\sigma} exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} \hspace{10px}\forall x \in \mathbb{R} 
+\end{displaymath}
+La densità normale è una curva a campana simmetrica rispetto all'asse $x=\mu$, dove ha il massimo pari a $(\sigma\sqrt{2\pi})^{-1} \approx  0.399/\sigma$.
+Come sempre, cerchiamo valore atteso e varianza, calcolando la generatrice $\phi = E[e^{tX}]$, derivandola e calcolandola in $X=0$. Otteniamo 
+\begin{gather*}
+    E[X]=\phi'(0)=\mu\\ 
+    Var(X) = E[X^2]- E[X]^2 = \sigma^2
+\end{gather*}
+Un risultato importante è che se X è una gaussiana e Y una trasformazione lineare di X, allora Y è a sua volta una gaussiana. In altri termini:
+sia $X\sim N(\mu, \sigma^2)$ e sia $Y=\alpha X + \beta$, dove $\alpha$ e $\beta$ sono due costanti reali, con $\alpha\neq 0$. Allora Y è una normale con media $\alpha\mu + \beta$ e varianza $\alpha^2\sigma^2$.
+Un corollario della suddetta permette di ottenere il fantomatico processo di normalizzazione: se $X\sim N(\mu,\sigma^2)$, allora
+\begin{displaymath}
+    Z:=\frac{X-\mu}{\sigma}
+\end{displaymath}
+è una V.A. normale con media 0 e varianza 1. Questa roba è così importante che ha un nome, \textbf{normale standard}, e un simbolo:
+\begin{displaymath}
+    \Phi(x) := \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{\frac{-y^2}{2}}dy\hspace{10px}\forall x \in \mathbb{R}
+\end{displaymath}
+Il fatto che $Z:=(X-\mu)/\sigma$ abbia distribuzione normale standard quando X è gaussiana di media $\mu$ e varianza $\sigma^2$, ci permette di esprimere le probabilità relative di X in termini di probabilità su Z. Ad esempio per trovare $P(X<b)$, notiamo che $X<b$ s.s.se 
+\begin{displaymath}
+    \frac{X-\mu}{\sigma} < \frac{b-\mu}{\sigma}
+\end{displaymath}
+così che
+\begin{displaymath}
+    P(X<b) = \Phi\left(\frac{b-\mu}{\sigma}\right)
+\end{displaymath}
+Analogamente, per ogni $a<b$, si ha che 
+\begin{displaymath}
+    P(a<X<b) := \Phi\left(\frac{b-\mu}{\sigma}\right)-\Phi\left(\frac{a-\mu}{\sigma}\right)
+\end{displaymath}
+
 \end{document}

@@ -89,13 +89,13 @@ S=\{f,m\}
 I sottoinsiemi dello spazio degli esiti si dicono \textbf{eventi}, quindi un evento E è un insieme i cui elementi sono esiti possibili. Si dice $E^c$ l'opposto dell'evento, quindi $P(E^c) = 1 - P(E)$. Risulta ovvio che $1 = P(E^c) + P(E)$.
 Se abbiamo due eventi qualsiasi, la loro unione $P(E\cup F) = P(E) + P(F) - P(E\cap F)$.
 \subsection{Spazi di esiti equiprobabili}
-Per tanti esperimenti è naturale assumere che ognuno degli esiti abbia la stessa probabilità di accadere. Abbiamo quindi che la probabilità che $E$ accada è pari a $P(E)=\frac{\#E}{N}$.
+Per tanti esperimenti è naturale assumere che ognuno degli esiti abbia la stessa probabilità di accadere. Abbiamo quindi che la probabilità che $E$ accada è pari a $P(E)=\frac{1}{N}$.
 \subsubsection{Principio di enumerazione}
 Consideriamo la realizzazione di due diversi esperimenti che possono avere rispettivamente $m$ ed $n$ esiti. Allora complessivamente avremo $mn$ risultati.
 \subsection{Coefficiente binomiale}
 Vogliamo ora determinare il numero di diversi gruppi di $r$ oggetti che si possono formare scegliendoli da un insieme di $n$. Ad esempio, quanti gruppi di 3 lettere possono formarsi dal gruppo \{A,B,C,D,E\}. In generale, poiché il numero di modi diversi di scegliere $r$ oggetti su $n$ tenendo conto dell'ordine è dato da $n(n-1)...(n-r+1)$, e poiché ogni gruppo di lettere viene contato $r!$ volte (uno per permutazione), il numero di gruppi di $r$ elementi su n totali è dato da
 \begin{displaymath}
-    \frac{n(n-1)...(n-1+r)}{r!} = \frac{n!}{r!(n-r!)} = {n\choose r}
+    \frac{n(n-1)...(n-r+1)}{r!} = \frac{n!}{r!(n-r!)} = {n\choose r}
 \end{displaymath}
 \subsection{Probabilità condizionata}
 Vogliamo ora calcolare la probabilità che un evento accada, appurato che ne è accaduto un altro. Ad esempio, lanciamo due dadi. L'evento E cercato è che il risultato sia 8. L'evento F già accaduto è che il primo dato risulta in un 3. Si dice probabilità condizionata di E dato F
@@ -227,7 +227,7 @@ Se le V.A. sono discrete, l'equazione equivale a dire che la funzione di massa c
 \end{displaymath}
 Possiamo generalizzare le osservazioni suddette anche per vettori di variabili aleatorie. \textit{Lo faremo? Non credo proprio.}
 \subsubsection{Distribuzioni condizionali}
-Le relazioni esistenti tra due variabili aleatorie possono essere chiarite dallo studio della distribuzione condizionale di una delle due, dato il valore dell'altra. Si ricorda che che presi comunque due eventi E e F con P(F)>0, la probabilità di E condizionata a F è data da
+Le relazioni esistenti tra due variabili aleatorie possono essere chiarite dallo studio della distribuzione condizionale di una delle due, dato il valore dell'altra. Si ricorda che che presi comunque due eventi E e F con $P(F)>0$, la probabilità di E condizionata a F è data da
 \begin{displaymath}
     P(E|F):=\frac{P(E\cap F)}{P(F)}
 \end{displaymath}
@@ -264,7 +264,7 @@ Con \textit{complessi calcoli tendenzialmente inutili}, otteniamo che
 \end{displaymath}
 Tale risultato vale sia nel caso discreto, che in quello continuo.
 \subsection{Varianza}
-A volte, conoscere la media di una distribuzione non basta. \textit{Se inserissimo l'autore di questi riassunti con la testa in un freezer e i piedi in un forno, la tempratura media sarebbe abbastanza ok, l'autore no.} Per questo, è utile conoscere quanto i valori si allontanano dalla media. Questo è proprio il compito della \textbf{varianza}. Sia X una variabile aleatoria con media $\mu$, la varianza di x, che denotiamo con $Var(X)$ è la quantità
+A volte, conoscere la media di una distribuzione non basta. \textit{Se inserissimo l'autore di questi riassunti con la testa in un freezer e i piedi in un forno, la temperatura media sarebbe abbastanza ok, l'autore no.} Per questo, è utile conoscere quanto i valori si allontanano dalla media. Questo è proprio il compito della \textbf{varianza}. Sia X una variabile aleatoria con media $\mu$, la varianza di x, che denotiamo con $Var(X)$ è la quantità
 \begin{displaymath}
     Var(X):=E[(X-\mu)^2]
 \end{displaymath}
@@ -474,5 +474,115 @@ Analogamente, per ogni $a<b$, si ha che
 \begin{displaymath}
     P(a<X<b) := \Phi\left(\frac{b-\mu}{\sigma}\right)-\Phi\left(\frac{a-\mu}{\sigma}\right)
 \end{displaymath}
-
+\subsection{Variabili aleatorie esponenziali}
+Una V.A. continua, la cui funzione di densità è data da 
+\begin{displaymath}
+    f(x)=\begin{cases}
+        \lambda e^{-\lambda x} \hspace{10px}\mbox{se }x\ge 0\\ 
+        0\hspace{10px}\mbox{se }x<0
+    \end{cases}
+\end{displaymath}
+per un opportuno valore della costante $\lambda>0$, si dice \textbf{esponenziale} con parametro (\textit{o intensità}) $\lambda$.
+La funzione di ripartizione di una tale variabile è data da 
+\begin{displaymath}
+    F(x) = P(X\le x) = 1-e^{-\lambda x}\hspace{10px} x\ge 0
+\end{displaymath}
+Nella pratica, la distribuzione esponenziale può rappresentare il tempo di attes aprima che si verifichi un certo evento casuale. Calcoliamo la generatrice dei momenti $E[e^{tX}] = \frac{\lambda}{\lambda-t}$ con $t<\lambda$. Derivando e calcolando in 0:
+\begin{gather*}
+    E[X]=\phi'(0)=\frac{1}{\lambda}\\ 
+    Var(X) = E[X^2] - E[X]^2 = \frac{1}{\lambda^2}
+\end{gather*}
+La proprietà fondamentale dell'esponenziale è la sua \textbf{assenza di memoria}. \textit{Che cazzo vuol dire? Nemmeno io ho memoria ma non ho libri da 40 euro che parlano di me.} Immaginiamo che X rappresenti il tempo che passa prima che un oggeto si rompa, dato t il tempo per cui ha già funzionato. Chiaramente, la probabilità che l'oggetto duri ancora per un tempo $s$ è $P(X>s+t | X>t)$. Otterremo che la condizione $X>t$ non varia la probabilità, e non ci dà quindi "informazioni utili".
+Un'altra informazione utile, è che se abbiamo n V.A. esponenziali $X_1,...,X_n$ indipendenti, di parametri $\lambda_1,...,\lambda_n$, allora la V.A. $Y:=min(X_1,...,X_n)$ è un'esponenziale di parametro $\lambda_Y=\sum_{i=1}^n \lambda_i$.
+\subsubsection{Il processo di Poisson}
+Consideriamo una serie di eventi istantanei che avvengono a intervalli di tempo casuali, e sia $N(t)$ il numero di quanti se ne sono verificati nell'intervallo $[0,t]$. $N(t)$ si dice \textit{processo di Poisson} di intensità $\lambda$, $\lambda>0$, se
+\begin{itemize}
+    \item $N(0) = 0$: \textit{questa stabilisce che si iniziano a contare gli eventi al tempo 0.}
+    \item Il numero degli eventi che hanno luogo in intervalli di tempo disgiunti sono indipendenti
+    \item La distribuzione del numero di eventi che si verifica in un dato intervallo di tempo dipende solo dalla lunghezza dell'intervallo, e non dalla sua posizione.
+    \item $\lim_{h\to0}\frac{P(N(h)=1)}{h} = \lambda$
+    \item $\lim_{h\to0}\frac{P(N(h)\ge2)}{h} = 0$
+\end{itemize}
+Le ultime due affermano che se si considera un intervallo di tempo di lunghezza $h$, vi è approssimativamente possibilità $\lambda h$ che vi occorrà un evento solo, e circa una probabilità nulla che se ne verifichino due o più.
+Se $N(t)$ è un processo di Poisson di intensità $\lambda$, allora 
+\begin{displaymath}
+    P(N(t)=k) = \frac{(\lambda t)^k}{k!} e^{-\lambda t}
+\end{displaymath}
+Ovvero, il numero di eventi in $[0,t]$ ha distribuzione di Poisson di media $\lambda t$. Inoltre, i tempi che separano gli eventi di un processo di Poisson, sono una successione di V.A. esponenziali di intensità $\lambda$.
+\subsection{Variabili aleatorie di tipo gamma}
+Una variabile aleatoria continua si dice avere distribuzione di tipo gamma di parametri $(\alpha,\lambda)$, con $\alpha>0, \lambda>0$ se la sua funzione di densità di probabilità è data da 
+\begin{displaymath}
+    f(x) =
+    \begin{cases}
+        \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\lambda x} \hspace{10px}\mbox{se } x>0\\ 
+        0  \hspace{10px}\mbox{se } x\le0
+    \end{cases}
+\end{displaymath}
+dove $\Gamma$ denota la funzione gamma di Eulero, che è definita in modo da normalizzare l'integrale di $f$.
+Per proprietà che ci asterremo dall'enunciare, possiamo calcolare la gamma sugli interi così:
+\begin{displaymath}
+    \Gamma(n) = (n-1)!
+\end{displaymath}
+Si noti che per $\alpha=1$ la distribuzione gamma coincide con l'esponenziale. Troviamo ora la generatrice dei momenti, la deriviamo e calcoliamo in 0 per ottenere:
+\begin{gather*}
+    E[X] = \phi'(0) = \frac{\alpha}{\lambda}\\
+    Var(X) = E[X^2]-E[X]^2 = \frac{\alpha}{\lambda^2}
+\end{gather*}
+Se abbiamo più V.A. indipendenti di tipo gamma $X_i$, allora $\sum_i^n X_i$ è una gamma di parametri $(\sum_i^n \alpha_i,\lambda)$. Di conseguenza, se abbiamo una somma di esponenziali, avremo una gamma di parametri $(n, \lambda)$.
+Se $Z_1, Z_2, ..., Z_n$ sono V.A. normali standard e indipendenti, allora la somma dei loro quadrati è una V.A. che prende il nome di \textbf{chi-quadro a n gradi di libertà}, e si indica con
+\begin{displaymath}
+    X \sim \chi_n^2
+\end{displaymath}  
+Essa è riproducibile, nel senso che se $X_1$ e $X_2$ sono due chi-quadro indipendenti, $X_1+X_2$ è una chi-quadro con $n_1+n_2$ gradi di libertà. Per dimostrare questo fatto non è necessario ricorrere alle funzioni generatrici, perché dalla definizione è evidente che $X_1+X_2$ è la somma dei quadrati di $n_1+n_2$ normali srandard indipendenti. 
+Definiamo la quantità $\chi_{\alpha,n}^2$, con $\alpha$ reale tra 0 e 1:
+\begin{displaymath}
+    P(X\ge \chi_{\alpha,n}^2) = \alpha
+\end{displaymath}
+\subsubsection{La relazione tra chi-quadro e gamma}
+Una chi-quadro ad n gradi di libertà, corrisponde a una gamma di parametri $(n/2, 1/2)$. La densità di probabilità è perciò data da:
+\begin{displaymath}
+    f(x) = \frac{x^{n/2-1}e^{-x/2}}{2^{n/2}\Gamma(n/2)}
+\end{displaymath}
+\subsection{Le distribuzioni T}
+Se $Z$ e $C_n$ sono V.A. indipendenti, la prima normale std e la seconda chi-quadro con $n$ gradi di libertà, allora la V.A. $T_n$, definita come 
+\begin{displaymath}
+    T_n := \frac{Z}{\sqrt{C_n/n}}
+\end{displaymath}
+si dice avere distribuzione t con n gradi di libertà, denotata con
+\begin{displaymath}
+    T_n \sim t_n
+\end{displaymath}
+La densità delle distribuzioni $t$ è simmetrica rispetto all'asse di ascissa 0. È possibile dimostrare che al crescere di $n$, la densità di $t_n$ converge a quella della normale standard. 
+Come sempre, calcoliamo valore atteso e varianza:
+\begin{gather*}
+    E[T_n] = 0\\ 
+    Var(T_n) = \frac{n}{n-2}
+\end{gather*}
+Si noti che, al crescere di $n$, la varianza decresce, convergendo a 1, cioè alla varianza della n.s. In analogia con quanto fatto per le chi-quadro, definiamo $t_{\alpha,n}$
+\begin{displaymath}
+    P(T_n\ge t_{\alpha,n}) = \alpha
+\end{displaymath}
+Dalla simmetria rispetto allo zero otteniamo che
+\begin{displaymath}
+    -t_{\alpha,n} = t_{1-\alpha,n}
+\end{displaymath}
+\subsection{Le distribuzioni F}
+Se $C_n$ e $C:m$ sono V.A. indipendenti, di tipo chi-quadro con $n$ e $m$ gradi di libertà, allora la V.A. $F_{n,m}$ definita da:
+\begin{displaymath}
+    F_{n,m} :=\frac{C_n/n}{C_m/m}
+\end{displaymath}
+si dice avere distribuzione F con $n$ e $m$ gradi di libertà. Come sempre, definiamo
+\begin{displaymath}
+    P(F_{n,m}>P_{\alpha,n,m}) = \alpha
+\end{displaymath}
+Notiamo, con calcoli, che
+\begin{displaymath}
+    \frac{1}{F_{\alpha,n,m}}=F_{1-\alpha,n,m}
+\end{displaymath}
+\subsection{Distribuzione logistica}
+Una V.A. continua si dice avere distribuzione \textbf{logistica} di parametri $(\mu, \nu)$, con $\nu>0$, se la sua funzione di ripartizione è data da
+\begin{displaymath}
+    F(x) = \frac{e^{(x-\mu)/\nu}}{1+e^{(x-\mu)/\nu}}\hspace{10px}\forall x \in \mathbb{R}
+\end{displaymath}
+\textit{Bella eh?} Cerchiamo il valore atteso, e scopriamo che $E[X] = \mu$. $\nu$ è invece detta \textit{dispersione}. Una V.A. logistica con media 0 e dispersione 1 è detta logistica standard.
 \end{document}

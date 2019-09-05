@@ -585,4 +585,40 @@ Una V.A. continua si dice avere distribuzione \textbf{logistica} di parametri $(
     F(x) = \frac{e^{(x-\mu)/\nu}}{1+e^{(x-\mu)/\nu}}\hspace{10px}\forall x \in \mathbb{R}
 \end{displaymath}
 \textit{Bella eh?} Cerchiamo il valore atteso, e scopriamo che $E[X] = \mu$. $\nu$ è invece detta \textit{dispersione}. Una V.A. logistica con media 0 e dispersione 1 è detta logistica standard.
+\section{La distribuzione delle statistiche campionarie}
+Se dovessimo studiare le caratteristiche di una popolazione molto grande, risulta ovvia l'impossibilità di analizzarne ogni singolo individuo. Si procede quindi solitamente a prenderne un campione casuale, e farvi inferenza.
+Un insieme $X_1,X_2,...,X_n$ di V.A. indipendenti, tutte con la stessa distribuzione F, si dice campione o campione aleatorio della distribuzione F.
+\subsection{La media campionaria}
+Consideriamo una popolazione di elementi, a ognuno dei quali è associata una grandezza numerica. Denotiamo con $\mu$ e $\sigma^2$ la media e la varianza. Definiamo la media campionaria come
+\begin{displaymath}
+    \overline{X}:=\frac{X_1+X_2+...+X_n}{n}
+\end{displaymath}
+Si noti che X è una funzione delle variabili aleatorie $X_1...X_n$. In quanto tale è una statistica, ed è una V.A. Ha senso quindi chiedersi quanto valgano il suo valore atteso e la sua varianza.
+\begin{gather*}
+    E[\overline{X}]=\mu\\ 
+    Var(\overline{X})=\frac{\sigma^2}{n}
+\end{gather*}
+Ha quindi lo stesso valore atteso della distribuzione da stimare, mentre la sua varianza è ridotta di un fattore n. 
+\subsection{Il teorema del limite centrale}
+Affrontiamo ora uno dei risultati più notevoli della teoria della probabilità, ossia il \textbf{teorema del limite centrale}. In termini semplicistici, esso afferma che la somma di un numero elevato di V.A. indipendenti tende ad avere distribuzione approssimativamente normale. Di seguente l'enunciato:
+Siano $X_1,X_2,...,X_n$ delle variabili aleatorie i.i.d., con media $\mu$ e varianza $\sigma^2$. Allora, se $n$ è grande, la somma $X_1+X_2+...+X_n$ è approssimativamente normale con media $n\mu$ e varianza $n\sigma^2$. Si può anche normalizzare la somma precedente allo scopo di ottenere una normale standard:
+\begin{displaymath}
+    \frac{X_1+X_2+...+X_n-n\mu}{\sigma\sqrt{n}}\sim \mathcal{N} (0,1)
+\end{displaymath}
+in realtà sopra al $\sim$ andrebbe un pallino, ad indicare "è approssimativamente distribuito come".
+\subsubsection{Distribuzione approssimata della media campionaria}
+Sia $X_1,X_2,...,X_n$ un campione proveniente da una popolazione di media $\mu$ e varianza $\sigma^2$. Il teorema appena enunciato ci permette di approssimare la distribuzione della media campionaria. Siccome il prodotto di una V.A. normale per una costante è ancora normale, ne segue che, quando $n$ è grande, $\overline{X}$ è approssimativamente gaussiana. Poiché, inoltre la media campionaria ha valore atteso $\mu$ e deviazione standard $\sigma/\sqrt{n}$, otteniamo che
+\begin{displaymath}
+    \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}
+\end{displaymath}
+\subsection{La varianza campionaria}
+Sia $X_1,X_2,...,X_n$ un campione aleatorio, proveniente da una distribuzione di media $\mu$ e varianza $\sigma^2$. Sia $\overline{X}$ la sua media campionaria. Introduciamo la varianza campionaria come
+\begin{displaymath}
+    S^2:=\frac{1}{n-1}\sum_{i=1}^n(X_i-\overline{X})^2
+\end{displaymath}
+La sua radice quadrata $S$ prende invece il nome di deviazione standard campionaria. Volendo calcolare $E[S^2]$ otteniamo che coincide con la varianza della popolazione.
+\begin{displaymath}
+    E[S^2]=\sigma^2
+\end{displaymath}
+
 \end{document}

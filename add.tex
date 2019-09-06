@@ -620,5 +620,55 @@ La sua radice quadrata $S$ prende invece il nome di deviazione standard campiona
 \begin{displaymath}
     E[S^2]=\sigma^2
 \end{displaymath}
-
+Cerchiamo ora il valore atteso. Otteniamo che, come ci aspetteremmo, il valore atteso 
+\begin{displaymath}
+    E[S^2]=\sigma^2
+\end{displaymath}
+\subsection{Le distribuzioni delle statistiche di popolazioni normali}
+Osserviamo i casi in cui la popolazione è di tipo normale. Sia $X_1,...,X_n$ un campione estratto da una distribuzione normale, di media $\mu$ e varianza $\sigma^2$. Le V.A. sono indipendenti e $X_i \sim \mathcal{N}(\mu,\sigma^2)$. Denotiamo come sempre 
+\begin{displaymath}
+    \overline{X} = \frac{1}{n}\sum^n X_i \hspace{20px}S^2=\frac{1}{n-1}\sum^n(X_i-\overline{X})^2
+\end{displaymath}
+Vogliamo trovare le loro distribuzioni.
+\subsubsection{La distribuzione della media campionaria}
+Siccome la somma di normali indipendenti è normale, $\overline{X}$ la è. La sua media e la sua varianza, come nel caso generale, sono $\mu$ e $\sigma^2/n$ e quindi
+\begin{displaymath}
+    \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}\sim \mathcal{N}(0,1)
+\end{displaymath}
+è una normale standard.
+\subsubsection{La distribuzione congiunta di $\overline{X}$ e $S^2$}
+Vogliamo ora derivare la distribuzione di $S^2$. Dimostriamo tramite l'identità che afferma che dati dei numeri $x_1,...,x_n$, posto $y_i:=x_i-\mu$
+\begin{displaymath}
+    \sum_{i=1}^n(y_i-\overline{y})^2=\sum_{i=1}^n y_i^2 - n\overline{y}^2
+\end{displaymath} 
+trasformandola in:
+\begin{displaymath}
+    \sum_{i=1}^n=(x_i-\overline{x})^2 = \sum_{i=1}^n(x_i-\mu)^2-n(\overline{x}-\mu)^2
+\end{displaymath}
+che la distribuzione seguente è una chi-quadro:
+\begin{displaymath}
+    (n-1)\frac{S^2}{\sigma^2} \sim \chi_{n-1}^2
+\end{displaymath} 
+Sappiamo inoltre che dato un campione $X_1,...,X_n$ estratto da una popolazione gaussiana di media $\mu$, se $\overline{X}$ e $S^2$ denotano media e varianza campionaria, allora
+\begin{displaymath}
+    \frac{\overline{X}-\mu}{S/\sqrt{n}}
+\end{displaymath}
+Quindi, se si normalizza $\overline{X}$ sottraendo la sua media $\mu$ e dividendo per la sua deviazione standard $\sigma/\sqrt{n}$, si ottiene una normale standard. Se invece dividiamo per $S/\sqrt{n}$ si ha una distribuzione $t$ con $n-1$ gradi di libertà.
+\subsection{Campionamento da insiemi finiti}
+Consideriamo una popolazione da N elementi. Con il concetto di \textbf{campione aleatorio} si intende la scelta di un sottoinsieme fatto in modo tale che tutti i sottoinsiemi ${N \choose n}$ abbiano la stessa possibilità di essere estratti. Supponiamo ora che una frazione $p$ della popolazione abbia una determinata caratteristica. Avremo quindi $pN$ elementi con la caratteristica, e $(1-p)N$ senza. Definiamo una variabile aleatoria
+\begin{displaymath}
+    X_i:=\begin{cases}
+        1 \mbox{ se l'elemento i possiede la caratteristica}\\ 
+        0 \mbox{ se l'elemento non possiede la caratteristica}
+    \end{cases}
+\end{displaymath}
+Consideriamo la somma di queste V.A.
+\begin{displaymath}
+    X:=X_1+X_2+...+X_n
+\end{displaymath}
+Passiamo ora ad analizzare le probabilità associate alle statistiche $X$ e $\overline{X}$. Notiamo innanzitutto che $P(X_i = 1) = p$. Notiamo che le variabili $X_i$ sono bernoulliane \textbf{non indipendenti}. Ciò è ovvio perché, avendo estratto un elemento positivo, le probabilità della seguente estrazione diminuiscono:
+\begin{displaymath}
+    P(X_2 = 1 | X_1=1) = \frac{pN-1}{N-1}
+\end{displaymath}
+ci sono infatti $pN-1$ elementi positivi rimasti su $N-1$. È facile notare che se $n$ è grande, la probabilità cambia poco e quindi si tende all'indipendenza. Siccome la somma di bernoulliane indipendenti è una binomiale, otteniamo che con $n$ elevato, $X:=\sum_i X_i$ è una binomiale di parametri $n$ e $p$.
 \end{document}

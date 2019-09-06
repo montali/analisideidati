@@ -686,4 +686,112 @@ Notiamo che
     P(X=n) = P(X>n-1)\lambda_n = s_1s_2...s_{n-1}\lambda_n
 \end{displaymath}
 È perciò possibile stimare la funzione di massa di X a partire dalle stime delle quantità $s_1,...,s_n$, ottenibili da un campione di individui, considerando quelli che sono entrati nel loro i-esimo anno di vita un anno fa, e denotando con $\hat{s_i}$ la frazione di essi ancora in vita oggi.
+\subsection{Intervalli di confidenza}
+Sia $X_1,...,X_n$ un campione estratto da una popolazione normale di media incognita $\mu$ e varianza nota $\sigma^2$. Abbiamo in precedenza dimostrato che $\overline{X}:=\sum_i X_i/n$ è lo stimatore ML per $\mu$. A volte, però, vorremmo un intervallo, piuttosto che un singolo punto. Per ottenerlo, dobbiamo fare uso della distribuzione di probabilità dello stimatore. Ricordando che $\overline{X}$ è una normale, sappiamo che
+\begin{displaymath}
+\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0,1)    
+\end{displaymath}
+Perciò, 
+\begin{gather*}
+    P\left(-1.96<\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}<1.96\right)\rightarrow
+    P\left(\overline{X}-1.96\frac{\sigma}{\sqrt{n}}<\mu<\overline{X}+1.96\frac{\sigma}{\sqrt{n}}\right)
+\end{gather*}
+il 95\% delle volte $\mu$ starà a una distanza non superiore a $1.96\sigma/\sqrt{n}$. Stiamo quindi affermando che nel 95\% dei casi, la media apparterrà all'intervallo $\left(-1.96\frac{\sigma}{\sqrt{n}}, +1.96\frac{\sigma}{\sqrt{n}}\right)$.
+A volte ci interessa trovare un intervallo \textit{unilaterale}. Per trovarlo, notiamo che se $Z$ è $\mathcal{N}(0,1)$, allora
+\begin{displaymath}
+    0.95\approx P(Z< 1.645) \approx P\left(\overline{X}-1.645\frac{\sigma}{\sqrt{n}}<\mu\right)
+\end{displaymath}
+Avremo quindi un intervallo unilaterale destro con il 95\% di confidenza 
+\begin{displaymath}
+    \left(\overline{x}-1.645\frac{\sigma}{\sqrt{n}},\infty\right)
+\end{displaymath}
+Possiamo ottenere livelli di confidenza per ogni livello. Ricordiamo infatti i numeri $z_\alpha$ tali che $P(Z>z_\alpha) = \alpha$. Questo implica che per ogni $\alpha \in (0,1)$ 
+\begin{displaymath}
+    P(-z_{\alpha/2}<Z<z_{\alpha/2})=1-\alpha
+\end{displaymath}
+Da cui deduciamo la formula generale 
+\begin{displaymath}
+    P\left(\overline{X}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}} < \mu <      \overline{X}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right) = 1-\alpha
+\end{displaymath}
+Ugualmente, per gli intervalli unilaterali ci basterà usare $z_\alpha$ e non $z_{\alpha/2}$.
+\subsubsection{Intervalli di confidenza per la media di una normale, con varianza incognita}
+Abbiamo un campione $X_1,...,X_n$ di una popolazione $\mathcal{N}(\mu, \sigma^2)$ con entrambi i parametri incogniti. Siccome la deviazione standard non è più nota, non possiamo più basarci sul fatto che $\sqrt{n}(\overline{X}-\mu)/\sigma$ è una normale standard. Tuttavia, usando la varianza campionaria $S^2$, otteniamo una V.A. di tipo $t$ con $n-1$ gradi di libertà. Allora, poiché la densità delle distribuzioni t è simmetrica rispetto a 0 come quella della normale standard, avremo per $\alpha \in (0,1/2)$
+\begin{displaymath}
+    P\left(\overline{X}-t_{\frac{\alpha}{2}, n-1}\frac{S}{\sqrt{n}} < \mu <  \overline{X}+t_{\frac{\alpha}{2}, n-1}\frac{S}{\sqrt{n}}\right)
+\end{displaymath}
+\subsubsection{Intervalli di confidenza per la varianza di una distribuzione normale}
+Abbiamo il solito campione proveniente da una normale, con entrambi i parametri incogniti. Possiamo costruire intervalli di confidenza per $\sigma^2$ basandoci sul fatto che
+\begin{displaymath}
+    (n-1)\frac{S^2}{\sigma^2} \sim \chi_{n-1}^2
+\end{displaymath}
+Infatti:
+\begin{displaymath}
+    P\left(\frac{(n-1)S^2}{\chi_{\frac{\alpha}{2},n-1}} < \sigma^2 <    \frac{(n-1)S^2}{\chi_{1-\frac{\alpha}{2},n-1}}\right)
+\end{displaymath}
+\subsection{Stime per la differenza tra le medie di due normali}
+Abbiamo due campioni $X_1,...,X_n$ e $Y_1,...,Y_n$ con parametri $(\mu_1,\sigma^2_1)$ e $(\mu_2,\sigma^2_2)$. Vogliamo stimare $(\mu_1-\mu_2)$. Dal momento che i due stimatori delle medie $\overline{X}$ e $\overline{Y}$ sono normali, assumiamo che $\overline{X}-\overline{Y}$ sia una normale. Inoltre,
+\begin{displaymath}
+    \overline{X}-\overline{Y} \sim \left(\mu_1-\mu_2, \frac{\sigma_1^2}{n}+\frac{\sigma_2^2}{m}\right)
+\end{displaymath}
+che abbiamo trovato sfruttando le proprietà di valore atteso e varianza. 
+Ipotizzando di conoscere $\sigma_1^2$ e $\sigma_2^2$, abbiamo che
+\begin{displaymath}
+    \frac{\overline{X}-\overline{Y} - (\mu_1-\mu_2)}{\sqrt{\sigma_{1}^2/n+\sigma_2^2/m}} \sim \mathcal{N}(0,1)
+\end{displaymath}
+Usando i soliti passaggi, otteniamo
+\begin{displaymath}
+    P\left(\overline{X}-\overline{Y}-z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n}+\frac{\sigma_2^2}{m}}<\mu_1-\mu_2< \overline{X}-\overline{Y}+z_{\alpha/2}\sqrt{\frac{\sigma_1^2}{n}+\frac{\sigma_2^2}{m}}\right) = 1-\alpha
+\end{displaymath}
+\textit{Dai, sono sicuro che all'esame te la ricorderai. Senz'altro.} 
+\subsection{Intervalli di confidenza approssimati per la media di una Bernoulliana}
+Consideriamo una popolazione di oggetti, ognuno dei quali indipendentemente da tutti gli altri soddisfa certi requisiti con probabilità incognita $p$. Nel caso vengano testati $n$ di questi oggetti, rilevando quanti di essi raggiungono tali requisiti, come posso arrivare a un intervallo di confidenza per $p$? Se X denota quanti oggetti, sugli $n$ testati, soddisfano i requisiti, è intuitivo che essa sia una binomiale di parametri $n$ e $p$. Quindi se $n$ è sufficientemente elevato, essa si approssima a una normale.
+\begin{displaymath}
+    \frac{X-np}{\sqrt{np(1-p)}} \sim \mathcal{N}(0,1)
+\end{displaymath}
+Quindi, come sempre
+\begin{displaymath}
+    P\left(-z_{\frac{\alpha}{2}} < \frac{x-np}{\sqrt{np(1-p)}} < z_{\frac{\alpha}{2}}\right)
+\end{displaymath}
+
+Tale regione non è però un intervallo. Se vogliamo ottenere un intervallo di confidenza vero e proprio, denotiamo con $\hat{p}:=X/n$ la frazione di elementi che soddisfa i requisiti. Sappiamo che $\hat{p}$ è lo stimatore di massima verosimiglianza di $p$, e ne è una buona approssimazione. Per questo, 
+\begin{displaymath}
+    \sqrt{n\hat{p}(1-\hat{p})} \approx \sqrt{np(1-p)}
+\end{displaymath}
+Quindi, ne deduciamo che 
+\begin{displaymath}
+    \frac{X-np}{\sqrt{n\hat{p}(1-\hat{p})}}\sim \mathcal{N}(0,1)
+\end{displaymath}
+Che ci permette di ottenere un intervallo di confidenza
+\begin{displaymath}
+    P\left(-z_{\frac{\alpha}{2}} < \frac{X-np}{\sqrt{n\hat{p}(1-\hat{p})}} <  z_{\frac{\alpha}{2}}\right) = 1-\alpha 
+\end{displaymath}
+\subsection{Intervalli di confidenza per la media di una distribuzione esponenziale}
+Consideriamo un campione $X_1,...,X_n$ di variabili aleatorie esponenziali i.i.d. tutte con media $\theta$ incognita. Lo stimatore ML per la media è il solito. Per ottenere gli intervalli di confidenza, ricordiamo che $\sum_{i=1}^n X_i$ ha distribuzione gamma con parametri $n$ e $1/\theta$. Sappiamo che
+\begin{displaymath}
+    \frac{2}{\theta}\sum_{i=1}^n X_i \sim \chi_{2n}^2
+\end{displaymath}
+Quindi per ogni $\alpha \in (0,1)$
+\begin{displaymath}
+    P\left(\frac{2\sum_{i=1}^n X_i}{\chi_{\frac{\alpha}{2},2n}} < \theta <   \frac{2\sum_{i=1}^n X_i}{\chi_{1-\frac{\alpha}{2},2n}}  \right)
+\end{displaymath} 
+\subsection{Valutare l'efficienza degli stimatori puntuali}
+Sia $X:=(X_1,...,X_n)$ un campione casuale estratto da una popolazione di distribuzione nota eccetto che per un parametro incognito $\theta$, e sia $d=d(X)$ uno stimatore di $\theta$. Come possiamo valutare l'efficacia di questo stimatore?
+Il criterio che utilizziamo è il cosiddetto \textit{errore quadratico medio} dello stimatore, che per definizione è
+\begin{displaymath}
+    r(d,\theta) := E[(d(X)-\theta)^2]
+\end{displaymath}
+Sarebbe ideale avere un singolo stimatore $d$ che minimizzasse $r(d,\theta)$ per tutti i valori di $\theta$, ma ciò non è possibile. Cerchiamo quindi, ad esempio, stimatori che minimizzino $r(d,\theta)$ e siano non distorti. Definiamo
+\begin{displaymath}
+    b_\theta (d) := E[d(X)] - \theta
+\end{displaymath}
+il \textbf{bias} di $d$ come stimatore di $\theta$. Se esso è nullo, diremo che $d$ è uno stimatore corretto, o \textit{non distorto}. In altri termini, uno stimatore è corretto se il suo valore atteso coincide con il parametro che esso deve stimare.
+\subsection{Stimatori Bayesiani}
+Vista l'indeterminazione del parametro incognito $\theta$, in alcune situazioni può essere ragionevole considerarlo assumere la forma di una V.A., facendo diventare il valore vero del parametro da stimare il numero realizzato dalla variabile. Questo approccio viene detto \textbf{bayesiano}, ed è di norma giustificato quando, prima di osservare gli esiti del campione di dati $X_1,...,X_n$, abbiamo delle informazioni sui possibili valori di $\theta$ e la loro plausibilità. Se queste informazioni assumono la forma di una distribuzione di probabilità, questa prende appropriatamente il nome di distribuzione a priori per $\theta$. Supponiamo allora di poter esprimere le nostre considerazioni a priori su $\theta$ nella forma di una distribuzione continua, con densità di probabilità $p(\theta)$; osserviamo i valori di un campione di dati la cui distribuzione dipende da $\theta$, e denotiamo con $f(x|\theta)$ la funzione di likelihood. Si tratta quindi della funzione di massa di probabilità/densità di probabilità, che esprime la plausibilità che uno dei dati sia uguale a $x$ quando $\theta$ è il valore del parametro. Se i valori osservati sono $X_i=x_i$ allora la probabilità condizionale di $\theta$ è data da
+\begin{displaymath}
+    f(\theta|x_1,...,x_n) = \frac{f(x_1,...,x_n,\theta)}{f(x_1,...,x_n)}
+\end{displaymath}  
+La densità condizionale $f(\theta|x_1,...,x_n)$ è detta densità di probabilità a posteriori. Se conosciamo la distribuzione, la migliore stima di una V.A. è la sua media. Quindi, per stimare $\theta$ calcoliamo la media della distribuzione a posteriori $f(\theta|x_1,...,x_n)$. Tale stimatore è detto \textbf{stimatore bayesiano}, si indica con $E[\theta|X_1,...,X_n]$ e il suo valore si calcola nel modo usuale:
+\begin{displaymath}
+    E[\theta|X_1,...,X_n] = \int_{-\infty}^\infty \theta f(\theta | x_1,...,x_n) d\theta
+\end{displaymath}
 \end{document}

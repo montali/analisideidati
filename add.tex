@@ -671,4 +671,19 @@ Passiamo ora ad analizzare le probabilità associate alle statistiche $X$ e $\ov
     P(X_2 = 1 | X_1=1) = \frac{pN-1}{N-1}
 \end{displaymath}
 ci sono infatti $pN-1$ elementi positivi rimasti su $N-1$. È facile notare che se $n$ è grande, la probabilità cambia poco e quindi si tende all'indipendenza. Siccome la somma di bernoulliane indipendenti è una binomiale, otteniamo che con $n$ elevato, $X:=\sum_i X_i$ è una binomiale di parametri $n$ e $p$.
+\section{Stima parametrica}
+Consideriamo un campione aleatorio $X_1,...,X_n$ estratto da una distribuzione $F_0$ che dipende da un vettore di parametri incogniti $\theta$. Potrebbe ad esempio trattarsi di V.A. di Poisson, delle quali ignoriamo il valore di $\lambda$. Ci occupiamo ora di trovare dei metodi per stimare questi parametri incogniti, sia in maniera puntuale, che tramite i cosiddetti \textit{intervalli di confidenza}.  
+\subsection{Stimatori di massima verosimiglianza (ML)}
+Una qualunque statistica che cerchi di dare una stima di un parametro $\theta$ si dice \textbf{stimatore di $\theta$}. Ad esempio, la media campionaria costituisce lo stimatore abituale della media $\mu$ di una distribuzione. Consideriamo delle variabili aleatorie $X_1,...,X_n$ la cui distribuzione congiunta sia nota a meno di un parametro incognito $\theta$. Per esempio, queste variabili hanno media $\theta$ incognita. Il nostro compito è quello di stimare $\theta$ partendo dai valori osservati. Utilizzeremo quindi uno \textit{stimatore di massima verosimiglianza}, ottenibile con il ragionamento seguente. Denotiamo con $f(x_1,...,x_n|\theta)$ la funzione di massa congiunta di $X_1,...,X_n$, mostrando esplicitamente che $f$ dipende da $\theta$. Se interpretiamo $f$ come la verosimiglianza che si realizzi la n-upla di dati $x_1,...,x_n$ quando $\theta$ è il vero valore assunto dal parametro, sembra ragionevole adottrare come stima il valore che rende massima la funzione. Conviene spesso usare il fatto che il logaritmo della suddetta ha il massimo nello stesso punto. 
+\subsubsection{Stimare la distribuzione dei tempi di vita}
+Prendiamo una popolazione i cui elementi hanno un tempo di vita casuale. Sia X il numero di anni che vivrà una persona a caso nata oggi. Indichiamo con $\lambda_i$ la probabilità che una persona nata oggi, e sopravvisuta per i primi $i-1$ anni di vita, muoia durante l'i-esimo anno di vita. 
+\begin{displaymath}
+    \lambda_i:=P(X=i|X>i-1)=\frac{P(X=i)}{P(X>i-1)}
+\end{displaymath}
+poi, con $s_i=1-\lambda_i$, indichiamo la probabilità che sopravviva anche all'anno i. Le quantità $\lambda_i$ e $s_i$ sono dette rispettivamente funzione di rischio e funzione di sopravvivenza di un individuo che entra nel suo i-esimo anno di vita. 
+Notiamo che 
+\begin{displaymath}
+    P(X=n) = P(X>n-1)\lambda_n = s_1s_2...s_{n-1}\lambda_n
+\end{displaymath}
+È perciò possibile stimare la funzione di massa di X a partire dalle stime delle quantità $s_1,...,s_n$, ottenibili da un campione di individui, considerando quelli che sono entrati nel loro i-esimo anno di vita un anno fa, e denotando con $\hat{s_i}$ la frazione di essi ancora in vita oggi.
 \end{document}

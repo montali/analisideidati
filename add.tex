@@ -794,4 +794,48 @@ La densità condizionale $f(\theta|x_1,...,x_n)$ è detta densità di probabilit
 \begin{displaymath}
     E[\theta|X_1,...,X_n] = \int_{-\infty}^\infty \theta f(\theta | x_1,...,x_n) d\theta
 \end{displaymath}
+\section{Verifica delle ipotesi}
+Abbiamo ora un campione aleatorio che ci è noto tranne che per uno o più parametri incogniti. Vogliamo verificare qualche ipotesi che li coinvolga. A priori, non sappiamo se l'ipotesi è vera o meno; vogliamo solo verificare se i dati raccolti la escludono, o no.
+\subsection{Livelli di significatività}
+Consideriamo una popolazione avente distribuzione $F_\theta$ che dipende da un parametro incognito $\theta$, e supponiamo di voler verificare una qualche ipotesi su $\theta$, che chiameremo \textit{ipotesi nulla} e denoteremo con $H_0$. Parleremo di \textit{ipotesi semplice}, quando essa caratterizza completamente la distribuzione, di \textit{ipotesi composta} quando non avviene. Supponiamo di voler disporre di un campione aleatorio $X_1,...,X_n$ proveniente da questa popolazione, e di volerlo utilizzare per eseguire una verifica su una certa ipotesi nulla $H_0$. Siccome dobbiamo valutare esclusivamente sugli $n$ valori dei dati, il test sarà definito da una regione C nello spazio a $n$ dimensioni, con l'intesa che se il vettore $(X_1,...,X_n)$ cade all'interno di C l'ipotesi viene rifiutata, mentre viene accettata altrimenti. Una regione C con queste caratteristiche viene detta \textit{regione critica} del test. Per esempio, se volessimo verificare che una popolazione gaussiana di varianza 1 abbia media 1, produrremmo la regione critica seguente:
+\begin{displaymath}
+    C=\left\{(X_1,...,X_n):\left|1-\frac{1}{n}\sum_{i=1}^n X_i\right| > \frac{1.96}{\sqrt{n}} \right\}
+\end{displaymath}
+Possono esistere due tipi di errori in questo procedimento:
+\begin{itemize}
+    \item \textit{Errori di prima specie}: quelli che gli informatici (\textit{gente a posto}) chiamano \textbf{false negative}.
+    \item \textit{Errori di seconda specie}: quelli che gli informatici chiamano \textbf{false positive}.
+\end{itemize}
+Per bilanciare tra i due, specifichiamo un livello $\alpha$, detto \textbf{livello di significatività}, e imponendo che il test abbia la proprietà che quando l'ipotesi $H_0$ è vera, la probabilità che venga rifiutata non possa superare $\alpha$. Esso viene fissato solitamente attorno a 0.1,0.05, 0.005. 
+\subsection{La verifica delle ipotesi sulla media di una popolazione normale}
+\subsubsection{Il caso in cui la varianza è nota}
+Supponiamo il solito campione aleatorio con parametri $\mu$ e $\sigma^2$, con varianza nota e media incognita. Vogliamo verificare l'ipotesi nulla
+\begin{displaymath}
+    H_0:\mu = \mu_0
+\end{displaymath}
+contro l'ipotesi alternativa
+\begin{displaymath}
+    H_1:\mu \neq \mu_0
+\end{displaymath}
+Siccome lo stimatore puntuale normale per $\mu$ è $\overline{X}:=\frac{1}{n}\sum_1^n X_i$, è chiaro che dovremo accettare $H_0$ quando $\mu_0$ non è troppo lontano da $\overline{X}$. La regione critica sarà quindi
+\begin{displaymath}
+    C=\left\{(X_1,...,X_n) |\overline{X}-\mu_0|>c \right\}
+\end{displaymath}
+scegliendo opportunamente la costante $c$. Se vogliamo un livello di significatività $\alpha$, dobbiamo individuare quel valore di $c$ che rende pari ad $\alpha$ la probabilità di errori di prima specie. Ciò significa che $c$ deve soddisfare la relazione seguente:
+\begin{displaymath}
+    \alpha=P_{\mu_0}(|\overline{X}-\mu_0|>c)
+\end{displaymath}
+dove $P_{\mu_0}$ sta ad intendere che la probabilità viene calcolata con l'assunzione che $\mu=\mu_0$. Infatti la definizione di errore di prima specie significa che l'errore ci porta a rifiutare un'ipotesi in realtà vera. Quando però $\mu=\mu_0$, sappiamo che $\overline{X}$ ha distribuzione normale con media $\mu$ e varianza $\sigma^2/n$, e quindi se Z denota una V.A. normale std, allora
+\begin{displaymath}
+    \frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}\sim Z
+\end{displaymath}
+Otteniamo allora 
+\begin{displaymath}
+    P\left(|Z|>\frac{c\sqrt{n}}{\sigma} \right) = 2P\left(Z>\frac{c\sqrt{n}}{\sigma} \right) 
+\end{displaymath}
+Ed in definitiva, con il test con livello di significatività $\alpha$
+\begin{gather*}
+    \mbox{si rifiuta }H_0\mbox{ se }\left|\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}   \right| > z_{\frac{\alpha}{2}}\\ 
+    \mbox{si accetta }H_0\mbox{ se }\left|\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}   \right| \le z_{\frac{\alpha}{2}} 
+\end{gather*}
 \end{document}

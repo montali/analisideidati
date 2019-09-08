@@ -838,4 +838,472 @@ Ed in definitiva, con il test con livello di significatività $\alpha$
     \mbox{si rifiuta }H_0\mbox{ se }\left|\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}   \right| > z_{\frac{\alpha}{2}}\\ 
     \mbox{si accetta }H_0\mbox{ se }\left|\frac{\overline{X}-\mu_0}{\sigma/\sqrt{n}}   \right| \le z_{\frac{\alpha}{2}} 
 \end{gather*}
+\subsubsection{I test unilaterali}
+Nel verificare l'ipotesi nulla $\mu=\mu_0$, abbiamo costruito un test che porta ad un rifiuto quando $\overline{X}$ è lontana da $\mu_0$, ovvero, valori di $\overline{X}$ troppo bassi o troppo elevati rispetto a $\mu_0$ sembrano smentire che $\mu$ sia proprio uguale a $\mu_0$. Cosa accade invece quando $\mu$ può essere solo maggiore a $\mu_0$, quando non sono uguali? Ovvero, cosa occorre fare se l'ipotesi alternativa a $H_0 : \mu = \mu_0$ è $H_1:\mu>\mu_0$? Dovremmo quindi rifiutare l'ipotesi nulla quando $\overline{X}$, lo stimatore di $\mu$, è molto maggiore di $\mu_0$, e quindi la regione critica dovrebbe essere del tipo seguente:
+\begin{displaymath}
+    C := \{(X_1,...,X_n):\overline{X}-\mu_0 >c \}
+\end{displaymath}
+per una scelta opportuna della costante c. In particolare, siccome la probabilità di rifiuto dovrebbe essere $\alpha$ quando $H_0$ è vera, occorre che $c$ soddisfi la relazione
+\begin{displaymath}
+    P_{\mu_0}(\overline{X}-\mu_0 >c) = \alpha
+\end{displaymath}
+Di nuovo, poiché supponiamo $\mu = \mu_0$, esiste una statistica Z normale standard così definita:
+\begin{displaymath}
+    Z:=\frac{\overline{X}- \mu_0}{\sigma/\sqrt{n}} \sim \mathcal{N}(0,1)
+\end{displaymath}
+Otteniamo quindi
+\begin{displaymath}
+    P\left(Z >  \frac{c\sqrt{n}}{\sigma/\sqrt{n}}\right)
+\end{displaymath}
+E, finalmente, ricaviamo c:
+\begin{displaymath}
+    c=z_\alpha\frac{\sigma}{\sqrt{n}}
+\end{displaymath}
+Quella trovata è una regione critica \textbf{unilaterale}.
+\subsubsection{Quando la varianza non è nota: il test t}
+Fino ad ora abbiamo supposto di conoscere la varianza. Spesso non è così. Possiamo però sfruttare i calcoli precedenti, utilizzano, al posto della deviazione standard, il suo stimatore: la deviazione standard campionaria.
+\begin{displaymath}
+    S := \sqrt{\frac{1}{n-1}\sum_1^n(X_i-\overline{X})^2}
+\end{displaymath}
+rifiutando l'ipotesi nulla quando
+\begin{displaymath}
+    \left| \frac{\overline{X}- \mu_0}{S/\sqrt{n}}    \right|
+\end{displaymath}
+è troppo grande. Per definire questa "grandezza" sfruttiamo il fatto che questa assume una distribuzione $t$ con $n-1$ gradi di libertà. Denotiamola con T, e imponiamo che la probabilità di errori di prima specie sia $\alpha$:
+\begin{displaymath}
+    P_{\mu_0}\left(-c \le \frac{\overline{X}- \mu_0}{S/\sqrt{n}} \le c\right)
+\end{displaymath}
+Per ricavare c, sappiamo che la distribuzione $t$ è simmetrica rispetto a 0, per cui $P(T > c) = \frac{\alpha}{2}$ e quindi $C=t_{\frac{\alpha}{2},n-1}$.
+In definitiva:
+\begin{gather*}
+    \mbox{si rifiuta } H_0\mbox{ se }\left|\frac{\overline{X}-\mu_0}{S/\sqrt{n}}     \right| > t_{\frac{\alpha}{2},n-1} \\ 
+    \mbox{si accetta } H_0\mbox{ se }\left|\frac{\overline{X}-\mu_0}{S/\sqrt{n}}     \right| \le t_{\frac{\alpha}{2},n-1}
+\end{gather*}
+\subsection{Verifica se due popolazioni normali hanno la stessa media}
+Vogliamo verificare se, ad esempio, due diversi approcci ad un problema hanno ricevuto risposte simili. Come fare? Possiamo verificare se "hanno la stessa media".
+\subsubsection{Se le varianze sono note}
+Abbiamo due campioni $X_1,...,X_n$ e $Y_1,...,Y_n$ indipendenti, provenienti da popolazioni normali di medie incognite $\mu_x$ e $\mu_y$, e varianze note $\sigma_x^2, \sigma_y^2$. Vogliamo verificare l'ipotesi 
+\begin{displaymath}
+    H_0:\mu_x = \mu_y \mbox{  contro  }H_1:\mu_x\neq\mu_y
+\end{displaymath} 
+Sfruttando i due stimatori delle medie, sembra ragionevole rifiutare l'ipotesi quando $\overline{X}-\overline{Y}$ è molto lontano da 0. Troviamo un valore di $c$ adatto, ricordando che
+\begin{displaymath}
+    \overline{X}-\overline{Y} \sim \mathcal{N}\left(\mu_x-\mu_y , \frac{\sigma_x^2}{n}+\frac{\sigma_y^2}{m}\right)
+\end{displaymath} 
+Per cui, per avere una normale standard:
+\begin{displaymath}
+    \frac{\overline{X}- \overline{Y} -(\mu_x-\mu_y)}{\sqrt{\sigma_x^2/n+\sigma_y^2/m}} \sim \mathcal{N}(0,1)
+\end{displaymath}
+Quindi, quando $H_0$ è vera, la statistica del test $\frac{\overline{X}- \overline{Y}}{\sqrt{\sigma_x^2/n+\sigma_y^2/m}}$ ha distribuzione normale standard.
+Per cui, come sempre
+\begin{gather*}
+    \mbox{si rifiuta }H_0\mbox{ se }\frac{|\overline{X}- \overline{Y}|}{\sqrt{\sigma_x^2/n+\sigma_y^2/m}} > z_{\frac{\alpha}{2}}\\
+    \mbox{si accetta }H_0\mbox{ se }\frac{|\overline{X}- \overline{Y}|}{\sqrt{\sigma_x^2/n+\sigma_y^2/m}} \le z_{\frac{\alpha}{2}}
+\end{gather*}
+\subsubsection{Se le varianze non sono note, ma si suppongono uguali}
+Con il caso di cui sopra, non sappiamo ora le varianze, ma sappiamo che sono uguali. Calcoliamo le due varianze campionarie, e ricordiamo che
+\begin{displaymath}
+    \frac{\overline{X}- \overline{Y} -(\mu_x-\mu_y)}{S_p\sqrt{1/n+1/m}} \sim t_{n+m-2}
+\end{displaymath}
+dove $S_p^2$ è lo stimatore \textit{pooled} di $\sigma^2$, definito da
+\begin{displaymath}
+    S_p^2 := \frac{(n-1)S_x^2+(m-1)S_y^2}{n+m-2}
+\end{displaymath}
+Perciò, quando $H_0$ è vera, la statistica del test 
+\begin{displaymath}
+    T:=\frac{\overline{X}- \overline{Y}}{S_p\sqrt{1/n+1/m}} \sim t_{n+m-2}
+\end{displaymath}
+ha distribuzione t con $n+m-2$ gradi di libertà. Ne segue che possiamo verificare l'ipotesi come
+\begin{gather*}
+    \mbox{si rifiuta }H_0\mbox{ se }|T|>t_{\frac{\alpha}{2},n+m-2}\\ 
+    \mbox{si accetta }H_0\mbox{ se }|T| \le t_{\frac{\alpha}{2},n+m-2}
+\end{gather*}
+Potremmo anche determinare il p-dei-dati $= 2P(T_{n+m-2} \ge |v|)$, dove $T$ è una $t$ di Student con $n+m-2$ gradi di libertà. 
+Se invece volessivo verificare un'ipotesi unilaterale come 
+\begin{displaymath}
+    H_0 : \mu_x \le \mu_y \mbox{ contro }H_1:\mu_x>\mu_y
+\end{displaymath}
+allora $H_0$ deve essere rifiutata per valori elevati di T, e in particolare il test ha livello di significatività $\alpha$ quando 
+\begin{displaymath}
+    \mbox{si rifiuta }H_0\mbox{ se } T>t_{\alpha,n+m-2}\\ 
+    \mbox{si accetta }H_0\mbox{ se } T\le t_{\alpha,n+m-2}
+\end{displaymath}
+Se $v$ è il valore assunto dalla statistica $T$, allora il p-dei-dati corrispondente è $P(T_{n+m-2}\ge v)$.
+\subsubsection{Se le varianze sono ignote e diverse}
+In questo caso, usiamo gli stimatori al posto delle deviazioni standard. C'è una sola condizione a ciò: $n$ e $m$ devono essere molto elevati, in modo che la statistica 
+\begin{displaymath}
+    \frac{\overline{X}- \overline{Y}}{\sqrt{S_x^2/n+S_y^2/m}}
+\end{displaymath}
+sia approssimativamente normale.
+Riassumendo:
+\begin{gather*}
+    \mbox{si accetta }H_0\mbox{ se }-z_{\frac{\alpha}{2}} \le \frac{\overline{X}- \overline{Y}}{\sqrt{S_x^2/n+S_y^2/m}}\le z_{\frac{\alpha}{2}}\\ 
+    \mbox{si accetta }H_0\mbox{ in tutti gli altri casi}
+\end{gather*}
+\subsection{La verifica di ipotesi sulla varianza di una popolazione normale}
+Abbiamo il solito campione, con media $\mu$ e varianza $\sigma^2$, entrambe incognite. Vogliamo verificare l'ipotesi
+\begin{displaymath}
+    H_0:\sigma^2 = \sigma_0^2 \mbox{ contro }H_1: \sigma^2 \neq \sigma_0^2
+\end{displaymath}
+per un valore di $\sigma_0^2$ fissato. Per ottenere un test, ricordiamo che $(n-1)\frac{S^2}{\sigma^2}$ ha distribuzione chi-quadro con $n-1$ gradi di libertà. Perciò, 
+\begin{displaymath}
+    P_{H_0}\left(\chi^2_{1-\frac{\alpha}{2},n-1} \le  (n-1)\frac{S^2}{\sigma_0^2} \le       \chi^2_{\frac{\alpha}{2},n-1} \right) = 1-\alpha
+\end{displaymath}
+e in definitiva
+\begin{gather*}
+    \mbox{si accetta }H_0\mbox{ se }\chi^2_{1-\frac{\alpha}{2},n-1} \le  (n-1)\frac{S^2}{\sigma_0^2} \le       \chi^2_{\frac{\alpha}{2},n-1}\\ 
+    \mbox{si rifiuta negli altri casi}
+\end{gather*}
+Il p-dei-dati è il seguente
+\begin{displaymath}
+    \mbox{p-dei-dati}=2\mbox{min}\{P(\chi_{n-1}^2 \le c), 1-P(\chi_{n-1}^2 \le c)\}
+\end{displaymath}
+\subsubsection{Verificare se due popolazioni normali hanno la stessa varianza}
+Abbiamo i soliti due campioni, provenienti da popolazioni di parametri incogniti $\mu_x, \sigma^2_x$ e $\mu_y, \sigma^2_y$, e verifichiamo 
+\begin{displaymath}
+    H_0:\sigma^2_x=\sigma^2_y \mbox{ contro }H_1: \sigma_x^2 \neq \sigma_y^2
+\end{displaymath}
+Definiamo le varianze campionarie come al solito, e sappiamo che $(n-1)S_x^2/\sigma_x^2$ è una chi-quadro con $n-1$ gradi di libertà.
+Quindi, $(S_x^2/\sigma_x^2)/(S_y^2/\sigma_y^2)$ ha distribuzione F con parametri $n-1$ e $m-1$, e quando $H_0$ è vera,
+\begin{displaymath}
+    \frac{S_x^2}{S_y^2}\sim F_{n-1,m-1}
+\end{displaymath}
+da cui si deduce che 
+\begin{displaymath}
+    P_{H_0}\left(F_{1-\frac{\alpha}{2},n-1,m-1} \le     \frac{S_x^2}{S_y^2} \le  F_{\frac{\alpha}{2},n-1,m-1}\right) = 1-\alpha
+\end{displaymath}
+Si accetta quindi $H_0$ se $F_{1-\frac{\alpha}{2},n-1,m-1} \le     \frac{S_x^2}{S_y^2} \le  F_{\frac{\alpha}{2},n-1,m-1}$. In alternativa, si calcola il valore $v$ assunto dalla statistica del test, $\frac{S_x^2}{S_y^2}$. Il p-dei-dati è uguale a $2$min$\{P(F_{n-1,m-1}\le v), 1-P(F_{n-1,m-1}\le v)\}$.
+\subsection{La verifica di ipotesi su una popolazione di Bernoulli}
+La distribuzione binomiale compare frequentemente nei problemi dell'ingegneria. Un esempio tipico è un processo produttivo che restituisce parti difettose o accettabili. Sappiamo che i pezzi saranno accettabili con probabilità $p$. Consideriamo un'ipotesi
+\begin{displaymath}
+    H_0:p \le p_0 \mbox{ contro }H_1: p>p_0
+\end{displaymath}
+dove $p_0$ è un valore assegnato. Se denotiamo con X il numero di pezzi difettosi di un campione di $n$, dobbiamo certamente rifiutare $H_0$ quando X è troppo grande. Per calcolare quanto grande, notiamo che quando $H_0$ è vera
+\begin{displaymath}
+    P_{H_0}(X\ge k) \le \sum_k^n {n \choose i} p_0^i (1-p_0)^{n-i}
+\end{displaymath}
+Per verificare le ipotesi ad un livello $\alpha$, si deve rifiutare quando $X\ge k^*$ con k il numero più piccolo intero $k$ tale che $\sum_{i=k}^n {n \choose i} p_0^i(1-p_0)^{n-i}\le \alpha$. Un modo migliore per implementare il test sarebbe ricavare prima il valore $x$ della statistica del test, e poi calcolare il p-dei-dati come segue:
+\begin{displaymath}
+    \mbox{p-dei-dati} = \sum_{i=x}^n {n \choose i} p_0^i (1-p_0)^{n-i}
+\end{displaymath}
+\subsubsection{Verificare se due popolazioni di Bernoulli hanno lo stesso parametro}
+Immaginiamo di voler confrontare due diversi metodi di fabbricazione per transistor. Indichiamo con $p_1$ e $p_2$ le probabilità, incognite, che un pezzo prodotto con i metodi 1 e 2 sia difettoso. Raccogliamo poi i campioni di numerosità $n_1$ e $n_2$ e indichiamo con $X_1$ e $X_2$ i pezzi difettosi trovati. Otterremo un'ipergeometrica di parametri $n_1,n_2,k$, con $k=X_1+X_2$. Perciò, 
+\begin{displaymath}
+    P_{H_0}(X_1=i|X_1+X_2=k)=\frac{{n_1 \choose i}{n_2 \choose k-i}}{{n_1+n_2 \choose k}}
+\end{displaymath}
+Volendo realizzare il test 
+\begin{displaymath}
+    H_0: p_1=p_2\mbox{ contro }H_1: p_1 \neq p_2
+\end{displaymath}
+si osserva quanto valgono $X_1=x_1$ e $X_2=x_2$ e si calcola la somma $k=x_1+x_2$. Denotata quindi X una V.A. ipergeometrica, se 
+\begin{gather*}
+    \mbox{si rifiuta } H_0\mbox{ se }P(X\le x_1)<\frac{\alpha}{2}\mbox{ o }P(X \ge x_1) < \frac{\alpha}{2}\\ 
+    \mbox{si accetta altrimenti}
+\end{gather*}
+Il p-dei-dati è pari a $2$min$\{P(X\le x_1),P(X \ge x_1)\}$.
+\subsection{La verifica di ipotesi sulla media di una distribuzione di Poisson}
+Sia X una Poisson con media $\lambda$, e supponiamo di voler confrontare le ipotesi
+\begin{displaymath}
+    H_0:\lambda=\lambda_0\mbox{ contro }H_1:\lambda\neq\lambda_0
+\end{displaymath}
+Se $x$ è il valore osservato per X, un test con controllo di significatività $\alpha$ deve rifiutare l'ipotesi nulla se 
+\begin{displaymath}
+    P_{\lambda_0}(X\ge x)\le \frac{\alpha}{2}\mbox{ o se }P_{\lambda_0}(X\le x)\le \frac{\alpha}{2}
+\end{displaymath}
+dove con $P_{\lambda_0}$ intendiamo la probabilità calcolata assumendo che X abbia media $\lambda_0$. Il p-dei-dati è equivalente a $2$min$\{P_{\lambda_0}(X \le x), P(X\ge x)\}$.
+\subsubsection{Testare la relazione tra i parametri di due Poisson}
+Siano $X_1$ e $X_2$ due V.A. di Poisson indipendenti, con medie rispettivamente $\lambda_1$ e $\lambda_2$, e di voler vagliare l'ipotesi
+\begin{displaymath}
+    H_0:\lambda=c\lambda_1\mbox{ contro }H_1:\lambda_2 \neq c\lambda_1
+\end{displaymath}
+per una costante $c$ assegnata. Il test che costruiamo è di tipo condizionale, ed è basato sul fatto che la distribuzione di $X_1$ condizionata al valore della somma di $X_1+X_2$, è binomiale. In particolare, la binomiale avrà parametri $(X_1+X_2)$ e $\lambda_1/(\lambda_1+\lambda_2)$. Dovremo allora rifiutare $H_0$ qualora
+\begin{displaymath}
+    P(Y\ge x_1)\le\frac{\alpha}{2}\mbox{ oppure }P(Y\le x_1)\le \frac{\alpha}{2}
+\end{displaymath}
+dove Y è la binomiale.
+\section{Regressione}
+Spesso vogliamo determinare le relazioni tra variabili, piuttosto che informazioni sulle stesse. Sarà quindi necessario avere più ingressi $x_1,...,x_r$, ed una sola uscita $Y$. Il modello suppose che la risposta sia in funzione degli ingressi; per questo Y è anche detta variabile dipendente, mentre le $x$, indipendenti. La più semplice relazione che è possibile immaginare è quella lineare; essa si presenta quando per delle opportune costanti $\beta_0,...,\beta_r$ vale l'equazione
+\begin{displaymath}
+    Y=\beta_0+\beta_1 x_1+\beta_2x_2+...+\beta_rx_r
+\end{displaymath}
+Se la relazione fosse questa saremo a posto. Visto che non la è, dovremo sommare alla suddetta un errore casuale $e$. Possiamo infatti esprimerla anche come 
+\begin{displaymath}
+    E[Y|\textbf{x}]=\beta_0+\beta_1 x_1+\beta_2x_2+...+\beta_rx_r
+\end{displaymath}
+Infine, enunciamo l'\textbf{equazione di regressione lineare}, che con i suoi \textbf{coefficienti di regressione} $\beta$ si dice semplice se $r=1$, multipla altrimenti.
+\begin{displaymath}
+    Y=\beta_0+\beta_1 x_1+\beta_2x_2+...+\beta_rx_r+e
+\end{displaymath}
+O, in caso di modello semplice:
+\begin{displaymath}
+    Y=\alpha+\beta x+e
+\end{displaymath}
+\subsection{Stima dei parametri di regressione}
+Supponiamo di osservare, per $i$ che va da 1 a n, le risposte $Y_i$ corrispondenti a certi valori di ingresso $x_i$ e di volerle usare per stimare $\alpha$ e $\beta$ in un modello di regressione lineare semplice. Se A e B sono gli stimatori cercati, allora $A+Bx_i$ è lo stimatore della risposta. Poiché la risposta realmente ottenuta è $Y_i$, la quantità $(Y_i-A-Bx_i)^2$ rappresenta il quadrato della differenza tra predizione e valore osservato, e dovrebbe quindi essere minimo. Denotiamo con $SS$ la somma di questi dati:
+\begin{displaymath}
+    SS:=\sum_1^n (Y_i-A-Bx_i)^2
+\end{displaymath}
+Il metodo dei minimi quadrati consiste nello scegliere come stimatori di $\alpha$ e $\beta$ i due valori di $A$ e $B$ che minimizzano $SS$. Deriviamo SS rispetto ad A e B.
+\begin{gather*}
+    \frac{dSS}{dA} = -2 \sum_1^n (Y_i-A-Bx_i)\\ 
+    \frac{dSS}{dB} = -2 \sum_1^n x_i(Y_i-A-Bx_i)
+\end{gather*}
+Per trovare il minimo, li poniamo a 0, ottenendo, dopo calcoli, gli stimatori dei minimi quadrati
+\begin{displaymath}
+    B=\frac{\sum_i x_iY_i-\overline{x}\sum_i Y_i}{\sum_i x_i^2-n\overline{x}^2}\hspace{20px}A=\overline{Y} - B\overline{x}
+\end{displaymath}
+La retta $A+Bx_i$ è la stima della retta di regressione, ossia la retta che interpola meglio i dati.
+\subsection{Distribuzione dei dati}
+Se fino ad ora è stato sufficiente supporre che gli errori casuali avessero media nulla, non possiamo illuderci per sempre. Scopriamo, riscrivendo $B$, che esso è una combinazione lineare delle normali $Y_1,...,Y_n$, ed è quindi normale. Calcolandone i parametri, otteniamo che $E[B] = \beta$, e quindi B è uno stimatore non distorto. Passando ad A, otteniamo che $E[A]=\alpha$ ed anch'esso è uno stimatore corretto. Calcoliamo la varianza di A esprimendolo come combinazione lineare di $Y_1,...,Y_n$. Il risultato è che
+\begin{displaymath}
+    Var(A)=\frac{\sigma^2\sum_i x_i^2}{n\left(\sum_i x_i^2-n\overline{x}^2\right)}
+\end{displaymath}
+Ritornando ai nostri residui $SS_R$, osserviamo che 
+\begin{displaymath}
+    \frac{SS_R}{\sigma^2} \sim \chi^2_{n-2}
+\end{displaymath}
+il fatto che sia una chi-quadro, implica che
+\begin{displaymath}
+    E\left[\frac{SS_R}{\sigma^2}\right] = n-2 \hspace{30px}E\left[\frac{SS_R}{n-2}\right] = \sigma^2
+\end{displaymath}
+Così che $\frac{SS_R}{n-2}$ è uno stimatore non distorto di $\sigma^2$. 
+Definiamo ora una notazione che sarà comoda in futuro:
+\begin{gather*}
+    S_{xY} := \sum_1^n(x_i-\overline{x})(Y_i-\overline{Y})\\ 
+    S_{xx} := \sum_1^n (x_i-\overline{x})^2\\ 
+    S_{YY} := \sum_1^n (Y_i-\overline{Y})^2
+\end{gather*}
+Possiamo così riscrivere gli stimatori
+\begin{displaymath}
+    B = \frac{S_{xY}}{S_{xx}}\hspace{30px}A = \overline{Y}-B\overline{x}\hspace{30px}SS_R=\frac{S_{xx}S_{YY}-S^2_{xY}}{S_{xx}}
+\end{displaymath}
+\subsection{Inferenza statistica sui parametri di regressione}
+Grazie al \textit{refactoring} appena fatto, costruire test statistici e intervalli di confidenza è \textbf{relativamente} semplice.
+\subsubsection{Inferenza su $\beta$}
+Un'ipotesi importante da verificare è quella che $\beta$ sia pari a zero. Di fatti, se è vera, la risposta non dipende dall'ingresso, ovvero non vi è correlazione tra le due variabili. Per verificare
+\begin{displaymath}
+    H_0: \beta=0 \mbox{ contro }H_1:\beta\neq0
+\end{displaymath}
+notiamo che 
+\begin{displaymath}
+    \frac{B-E[B]}{\sqrt{Var(B)}}=\frac{B-\beta}{\sigma/\sqrt{S_{xx}}} \sim \mathcal{N}(0,1)
+\end{displaymath}
+e inoltre tale V.A. è indipendente da
+\begin{displaymath}
+    \frac{SS_R}{\sigma^2} \sim \chi^2_{n-2}
+\end{displaymath}
+Perciò, dalla definizione di distribuzione $t$ segue che 
+\begin{displaymath}
+    \frac{B-\beta}{\sigma/\sqrt{S_{xx}}}\sqrt{\frac{\sigma^2(n-2)}{SS_R}}=\sqrt{\frac{(n-2)S_{xx}}{SS_R}}(B-\beta)\sim t_{n-2}
+\end{displaymath}
+Quindi, quando $H_0$ è vera,
+\begin{displaymath}
+    \sqrt{\frac{(n-2)S_{xx}}{SS_R}}B\sim t_{n-2}
+\end{displaymath}
+se volessimo avere un livello di significatività $\gamma$, quindi
+\begin{gather*}
+    \mbox{si rifiuta }H_0\mbox{ se }\sqrt{\frac{(n-2)S_{xx}}{SS_R}}|B|> t_{\frac{\gamma}{2},n-2}\\ 
+    \mbox{si accetta }H_0\mbox{ negli altri casi}
+\end{gather*}
+Si potrebbe anche calcolare il valore $v$ assunto da $\sqrt{\frac{(n-2)S_{xx}}{SS_R}}|B|$ e rifiutando quindi $H_0$ quando il livello di significatività è maggiore o uguale a 
+\begin{displaymath}
+    \mbox{p-dei-dati}=P(|T_{n-2}|>v)=2P(T_{n-2}>v)
+\end{displaymath}
+\subsubsection{Regressione alla media}
+Assumiamo che vi sia una relazione lineare tra il valore della stessa caratteristica in un figlio $(Y)$ ed un genitore $x$. Si avrà una regressione verso la media ogni volta che il parametro $\beta$ è compreso tra 0 e 1. Ovvero, se 
+\begin{displaymath}
+    E[Y]=\alpha+\beta x
+\end{displaymath}
+e $0<\beta<1$, allora $E[Y]$ sarà più piccolo di $x$ quando $x$ è molto grande, e più grande di $x$ quando $x$ è molto piccolo. 
+\subsubsection{Inferenza su $\alpha$}
+La determinazione degli intervalli di confidenza e dei test statistici che riguardano il parametro $\alpha$ si ottiene in modo analogo a quanto fatto per $\beta$. In particolare, possiamo mostrare che 
+\begin{displaymath}
+    \sqrt{\frac{n(n-2)S_{xx}}{SS_R\sum_i x_i^2}}(A-\alpha)\sim t_{n-2}
+\end{displaymath}
+di conseguenza, ad un livello $1-\gamma$, l'intervallo di confidenza bilaterale è dato da 
+\begin{displaymath}
+    A\pm t_{\frac{\gamma}{2},n-2}\sqrt{\frac{SS_R\sum_i x_i^2}{n(n-2)S_{xx}}}
+\end{displaymath}
+\subsubsection{Inferenza sulla risposta media $\alpha+\beta x$}
+Una questione certamente interessante è l'utilizzo delle coppie di dati $(x_i, Y_i),i=1,2,...,n$ per stimare $\alpha+\beta x_0$, vale a dire la risposta media per un livello di ingresso assegnato $x_0$. Se si desidera uno stimatore puntuale, la scelta ovvia è $A+Bx_0$, che è uno stimatore non distorto, visto che A e B lo sono entrambi. Se invece vogliamo ottenere degli intervalli di confidenza, oppure verificare delle ipotesi sulla risposta media, è necessario prima determinare la distribuzione dello stimatore $A+Bx_0$, che scopriremo essere normale. La media già la conosciamo, ci serve la varianza
+\begin{displaymath}
+    Var(A+Bx_0)=\sigma^2\left[\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}\right]
+\end{displaymath}
+Quindi, in definitiva
+\begin{displaymath}
+    A+Bx_0 \sim \mathcal{N}\left(\alpha+\beta x_0, \sigma^2\left[\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}\right]\right)
+\end{displaymath}
+Non possiamo però fare inferenza su questa statistica perché $\sigma^2$ è incognita. Per questo, sfruttiamo il fatto che $A+Bx_0$ sia indipendente da
+\begin{displaymath}
+    \frac{SS_R}{\sigma^2}\sim \chi^2_{n-2}
+\end{displaymath}
+ricaviamo quindi gli intervalli di confidenza
+\begin{displaymath}
+    A+Bx_0 \pm t_{\frac{\gamma}{2},n-2}\sqrt{\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}}\sqrt{\frac{SS_R}{n-2}}
+\end{displaymath}
+\subsubsection{Intervallo di predizione di una risposta futura}
+Ipotizziamo ora di voler trovare non un valore medio di $\alpha+\beta x$, quanto un singolo valore dato un ingresso specifico. Lo stimatore adatto sarebbe quello della sua media $A+Bx_0$. Se volessimo però un intervallo di valori che contenga ala risposta con un determinato livello di confidenza?
+Denotiamo semplicemente Y, la risposta futura con un livello di ingresso $x_0$, e consideriamo la distribuzione di probabilità di $Y-A-Bx_0$, cioè la differenza tra risposta e valore predetto. Sappiamo per ipotesi che Y è normale di parametri $\alpha+\beta x_0$ e $\sigma^2$. Sappiamo inoltre da prima che 
+\begin{displaymath}
+    A+Bx_0 \sim \mathcal{N}\left(\alpha+\beta x_0, \sigma^2\left[\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}\right]\right)
+\end{displaymath}
+Di conseguenza, la differenza è ancora una normale
+\begin{displaymath}
+    Y-A-Bx_0 \sim \mathcal{N}\left(0, \sigma^2\left[1+\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}\right]\right)
+\end{displaymath}
+Usando il fatto che $SS_R$ è indipendente da A e B, come pure da Y, e che $\frac{SS_R}{\sigma^2}$ è una chi-quadro con $n-2$ gradi di libertà, sostituiamo e otteniamo una $t$:
+\begin{displaymath}
+    \frac{Y-A-Bx_0}{\sqrt{\frac{n+1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}}\sqrt{\frac{SS_R}{n-2}}}\sim t_{n-2}
+\end{displaymath} 
+In definitiva, per ogni $0<\gamma<1$, si ha che
+\begin{displaymath}
+    P\left(-t_{\frac{\gamma}{2},n-2}  <      \frac{Y-A-Bx_0}{\sqrt{\frac{n+1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}}\sqrt{\frac{SS_R}{n-2}}}  <  t_{\frac{\gamma}{2},n-2}\right) = 1-\gamma
+\end{displaymath}
+\subsection{Coefficiente di determinazione e coefficiente di correlazione campionaria}
+Supponiamo di voler esprimere la variabilità o dispersione dell'insieme di risposte $Y_1,...,Y_n$, ottenute con livelli di ingresso $x_1,...,x_n$. Una comune misura statistica della variabilità è costituita da 
+\begin{displaymath}
+    S_{YY} := \sum_1^n (Y_i-\overline{Y})^2
+\end{displaymath}
+una quantità che rappresenta, a meno di un fattore moltiplicativo, la varianza campionaria delle $Y_i$. Se esse fossero ad esempio tutte uguali tra loro -e quindi tutte uguali a $\overline{Y}$- il valore si $S_{YY}$ sarebbe pari a 0.
+Questa variabilità viene però da due contributi. In primis, sappiamo che se le $x_i$ non sono tutte uguali, le $Y_i$ hanno valori attesi diversi, e questo disperde le loro realizzazioni. In secundis, una volta che si tenga conto della variabilità delle $x_i$, ogni $Y_i$ ha distribuzione con varianza $\sigma^2$ attorno al suo valore atteso e non coinciderà quindi esattamente con le nostre predizioni. Cerchiamo di quantificare quale parte della variabilità sia dovuta all'ingresso e quale alla varianza propria delle risposte. Notiamo che la quantità
+\begin{displaymath}
+    SS_R := \sum_1^n (Y_i-A-Bx_i)^2
+\end{displaymath}
+misura quella parte di variabilità intrinseca delle risposte. Di conseguenza, $S_{YY}- SS_R$ rappresenta l'altra parte, cioè quella che si spiega con la diversità dei livelli di ingresso. La statistica $R^2$, detta \textit{coefficiente di determinazione}, è la frazione della variabilità totale che si spiega con la diversità dei livelli di ingresso
+\begin{displaymath}
+    R^2 := \frac{S_{YY}-SS_R}{S_{YY}} = 1-\frac{SS_R}{S_{YY}}
+\end{displaymath}
+\subsection{Analisi dei residui: verifica del modello}
+Per verificare se un modello di regressione lineare semplice
+\begin{displaymath}
+    Y=\alpha+\beta x + e
+\end{displaymath}
+si adatti o meno ai dati, analizziamo i cosiddetti \textit{residui}, $Y_i-(A+Bx_i)$. Per prima cosa essi vanno normalizzati, dividendoli per lo stimatore della deviazione standard delle $Y_i$:
+\begin{displaymath}
+    \frac{Y_i-(A+Bx_i)}{\sqrt{SS_R/(n-2)}}
+\end{displaymath}
+ottenenendo i cosiddetti \textit{residui standardizzati}. Quando il modello è corretto, questi residui sono approssimativamente normali standard indipendenti, quindi distribuiti attorno allo zero. 
+\subsection{Linearizzazione}
+In certe situazioni può essere evidente che la risposta non sia una funzione lineare del livello di ingresso. Possiamo però a volte riportarci al caso lineare con un cambiamento di variabili. Ad esempio, immaginiamo di avere una relazione esponenziale. Potremmo linearizzarla prendendo i logaritmi, e poi stimare $\alpha$ e $\beta$ con il metodo dei minimi quadrati. 
+\subsection{Minimi quadrati pesati}
+Nel solito modello di regressione $Y=\alpha+\beta x + e$ può capitare che la varianza delle risposte non sia costante ma dipenda dal livello di ingresso. Se queste dipendenze sono note, oppure se sono note a meno di un fattore moltiplicativo, i parametri di regressione si possono stimare minimizzando una somma pesata dei residui al quadrato. In particolare, se
+\begin{displaymath}
+    Var(Y_i) = \frac{\sigma^2}{w_i}
+\end{displaymath}
+con le $w_i$ note e $\sigma^2$ eventualmente ignota, allora gli stimatori A e B vanno scelti in modo da minimizzare 
+\begin{displaymath}
+    \sum_1^n \frac{[Y_i-(A+Bx_i)]^2}{Var(Y_i)} = \frac{1}{\sigma^2}\sum_1^n w_i(Y_i-A-Bx_i)^2
+\end{displaymath}
+Calcolando le derivate parziali rispetto ad A e B, otteniamo il seguente sistema
+\begin{displaymath}
+    \begin{cases}
+        \sum_1^n w_iY_i = A\sum_1^n w_i + B \sum_1^n w_i x_i\\ 
+        \sum_1^n w_i x_i Y_i = A\sum_1^n w_ix_i + B\sum_1^nw_ix_i^2
+    \end{cases}
+\end{displaymath}
+Queste equazioni possono essere facilmente risolte per trovare gli stimatori dei minimi quadrati. 
+\subsection{Regressione polinomiale}
+Nei casi in cui la relazione che lega la variabile di risposta Y con quella indipendente $x$ non possa essere approssimata adeguatamente con modelli lineari, si può a volte prendere in considerazione le relazioni polinomiali, come
+\begin{displaymath}
+    U=\beta_0 + \beta_1 x + \beta_2x^2+...+\beta_rx^r+e
+\end{displaymath}
+dove i $\beta$ sono i coefficienti di regressione che è necessario stimare. Supponendo che i dati consistano di $n$ coppie di valori $(x_i,Y_i)$, gli stimatori dei minimi quadrati di $\beta_0,...,\beta_r$, che denotiamo con $B_1,...,B_r$, sono quei valori che rendono minima l'espressione seguente:
+\begin{displaymath}
+    \sum_1^n (Y_i-B_0-B_1x_i-B_rx_i^r)^2
+\end{displaymath} 
+Per determinarli calcoliamo le derivate parziali rispetto a $B_0,...,B_r$ e le poniamo uguali a 0. Otteniamo un sistema in $r+1$ equazioni dette \textit{equazioni normali}.
+\begin{displaymath}
+    \begin{cases}
+        \sum_1^n Y_i = B_0n+B_1\sum_1^n x_i + B_2\sum_1^n x_i^2+...+B_r\sum_1^n x_i^r\\ 
+        \sum_1^n x_iY_i = B_0\sum_1^n x_i+B_1\sum_1^n x_i^2 + B_2\sum_1^n x_i^3+...+B_r\sum_1^n x_i^{r+1}\\ 
+        ...\\
+        \sum_1^n x_i^rY_i = B_0\sum_1^n x_i^r+B_1\sum_1^n x_i^{r+1} + B_2\sum_1^n x_i^{r+2}+...+B_r\sum_1^n x_i^{2r} 
+    \end{cases}
+\end{displaymath}
+La scelta del grado va svolta studiando il diagramma di dispersione, che spesso può darne un'idea.
+\subsection{Regressione lienare multipla}
+Nella gran parte delle applicazioni, la risposta può essere predetta in maniera migliore se, al posto di basarsi su una singola variabile, se ne utilizzano diverse. Studiamo il modello di regressione con $k$ variabili indipendenti, la risposta è legata loro tramite una relazione lineare
+\begin{displaymath}
+    Y=\beta_0+\beta_1 x_1 + ... + \beta_k x_k + e
+\end{displaymath}
+dove per $j$ che va da 1 a $k$, $x_j$ è il livello della j-esima variabile di ingresso ed $e$ è un errore casuale che assumeremo di media nulla e varianza costante incognita. I parametri $\beta$ devono essere stimati dai dati, che consisteranno di $n$ osservazioni di risposte $Y_i$ unitamente ai rispettivi livelli di ingresso. Le variabili $Y_i$ sono legate agli ingressi tramite
+\begin{displaymath}
+    E[Y_i] = \beta_0 + \beta_1 x_{i1} + ... + \beta_k x_{ik}
+\end{displaymath}
+Se denotiamo con $B_0,...,B_k$ gli stimatori di $\beta$, allora la somma dei residui al quadrato è 
+\begin{displaymath}
+    \sum_1^n (Y_i-B_0- B_1x_{i1}-...-B_kx_{ik})^2
+\end{displaymath}
+ed è precisamente l'espressione da minimizzare dagli stimatori dei minimi quadrati. Per determinarli, facciamo le derivate parziali rispetto a $B_i$ e le poniamo uguali a 0, giungendo al sistema seguente:
+\begin{displaymath}
+    \begin{cases}
+        \sum_1^n Y_i = B_0n+B_1\sum_1^n x_{i1} + B_2\sum_1^n x_{i2}+...+B_k\sum_1^n x_i^k\\ 
+        \sum_1^n x_{i1}Y_i = B_0\sum_1^n x_{i1}+B_1\sum_1^n x_{i1}^2 + B_2\sum_1^n x_{i1}x_{i2}+...+B_k\sum_1^n x_{i1}x_{ik}\\ 
+        ...\\
+        \sum_1^n x_{ik}Y_i = B_0\sum_1^n x_{ik}+B_1\sum_1^n x_{i1}x_{ik} + B_2\sum_1^n x_{ik}x_{i2}+...+B_k\sum_1^n x_{ik}^2\\ 
+    ...\\    \end{cases}
+\end{displaymath}
+Conviene introdurre una notazione matriciale.
+\begin{displaymath}
+    Y:=\left[\begin{matrix}
+        Y_1\\
+        Y_2\\ 
+        ...\\
+        Y_n
+    \end{matrix}\right]
+    \hspace{20px}
+    X:=
+    \left[
+        \begin{matrix}
+            1&x_{11}&x_{12}&...&x_{1k}\\ 
+            1&x_{21}&x_{22}&...&x_{2k}\\
+            ...&...&...&...&...\\ 
+            1&x_{n1}&x_{n2}&...&x_{nk}
+        \end{matrix}
+    \right]
+    \hspace{20px}
+    \beta:=
+    \left[
+        \begin{matrix}
+            \beta_0\\ 
+            \beta_1\\ 
+            ...\\ 
+            \beta_k
+        \end{matrix}
+    \right]
+    \hspace{20px}
+    e:=
+    \left[
+        \begin{matrix}
+            e_1\\ 
+            e_2\\ 
+            ...\\ 
+            e_n
+        \end{matrix}
+    \right]
+\end{displaymath}
+Con questa notazione, il modello di regressione multipla può essere scritto nella forma 
+\begin{displaymath}
+    Y=X\beta + e
+\end{displaymath}
+Se inoltre denotiamo con 
+\begin{displaymath}
+    B:=
+    \left[
+        \begin{matrix}
+            B_0\\ 
+            B_1\\ 
+            ...\\ 
+            B_k            
+        \end{matrix}
+    \right]
+\end{displaymath}
+allora le equazioni normali prendono la forma 
+\begin{displaymath}
+    X'XB=X'Y
+\end{displaymath}
+dove $X'$ è la trasposta di $X$. Se poi $X'X$ è invertibile, possiamo ricavare gli stimatori dei minimi quadrati tramite
+\begin{displaymath}
+    B=(X'X)^{-1}X'Y
+\end{displaymath}
 \end{document}

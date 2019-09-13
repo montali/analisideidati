@@ -1306,4 +1306,18 @@ dove $X'$ è la trasposta di $X$. Se poi $X'X$ è invertibile, possiamo ricavare
 \begin{displaymath}
     B=(X'X)^{-1}X'Y
 \end{displaymath}
+\subsection{Formulario rapido della regressione}
+\subsubsection{Regressione lineare}
+\begin{gather*}
+    S_{xY}=\sum_i (x_i-\overline{x})(Y_i-\overline{Y})\hspace{10px}S_{xx}=\sum_i(x_i-\overline{x})^2\hspace{10px}S_{YY}=\sum_i (Y_i-\overline{Y})^2\\ 
+    \rho = \frac{S_{xY}}{\sqrt{S_{xx}S_{YY}}}\hspace{10px}B=\frac{S_{xY}}{S_{xx}}\hspace{10px}A=\overline{Y}-B\overline{x}\\ 
+    R^2=1-\frac{SS_R}{S_{YY}}\hspace{10px}SS_R=\frac{S_{xx}S_{YY}-S{xY}^2}{S_{xx}}
+\end{gather*}
+\subsubsection{Regressione multipla}
+\begin{gather*}
+    Y=XB+e\hspace{10px}X'XB=X'Y \rightarrow B=(X'X)^{-1}X'Y\hspace{10px}C:=(X'X)^{-1}X'\rightarrow B=CY\\ 
+    Cov(B)=\sigma C C' = \sigma (X'X)^{-1}\\ 
+    \frac{SS_R}{\sigma^2}\sim \chi_{n-k+1}^2\rightarrow E\left[\frac{SS_R}{\sigma^2}\right]=n-k-1\\ 
+    r=Y-XB\rightarrow SS_R=Y'Y-B'X'Y
+\end{gather*}
 \end{document}

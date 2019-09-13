@@ -92,6 +92,13 @@ Se abbiamo due eventi qualsiasi, la loro unione $P(E\cup F) = P(E) + P(F) - P(E\
 Per tanti esperimenti è naturale assumere che ognuno degli esiti abbia la stessa probabilità di accadere. Abbiamo quindi che la probabilità che $E$ accada è pari a $P(E)=\frac{1}{N}$.
 \subsubsection{Principio di enumerazione}
 Consideriamo la realizzazione di due diversi esperimenti che possono avere rispettivamente $m$ ed $n$ esiti. Allora complessivamente avremo $mn$ risultati.
+\subsection{Assiomi della probabilità}
+Enunciamo ora tre fondamentali assiomi, così importanti da essere definiti i \textbf{tre assiomi della probabilità.}
+\begin{enumerate}
+    \item $0\le P(E) \le 1$, ossia la probabilità è sempre compresa tra 0 e 1
+    \item $P(S)=1$, ossia la probabilità dello spazio degli esiti è 1. Questo significa che lo spazio degli esiti include sempre tutti gli esiti, quindi dovrà risultare in un 100\% di possibilità.
+    \item $P\left(\bigcup_{i=1}^n E_i\right) = \sum_{i=1}^n P(E_i)$, ossia che unendo due eventi, le loro probabilità si sommano.
+\end{enumerate}
 \subsection{Coefficiente binomiale}
 Vogliamo ora determinare il numero di diversi gruppi di $r$ oggetti che si possono formare scegliendoli da un insieme di $n$. Ad esempio, quanti gruppi di 3 lettere possono formarsi dal gruppo \{A,B,C,D,E\}. In generale, poiché il numero di modi diversi di scegliere $r$ oggetti su $n$ tenendo conto dell'ordine è dato da $n(n-1)...(n-r+1)$, e poiché ogni gruppo di lettere viene contato $r!$ volte (uno per permutazione), il numero di gruppi di $r$ elementi su n totali è dato da
 \begin{displaymath}

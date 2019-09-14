@@ -120,6 +120,18 @@ Visto inoltre che i due sono eventi disgiunti, si ha che
     P(E|F)P(F) + P(E|F^c)[1-P(F)]
 \end{gather*}
 Questa \textit{orribile} equazione, ci mostra che la probabilità dell'evento E si può ricavare come media pesata delle probabilità condizionali di E sapendo che: F si è verificato e non si è verificato. I pesi sono ovviamente le probabilità degli eventi a cui si condiziona.
+L'equazione di cui sopra si può generalizzare in questo modo: prendiamo $F_n$ eventi mutualmente esclusivi, tali che 
+\begin{displaymath}
+    \bigcup_{i=1}^nF_i=S
+\end{displaymath}
+Risulta evidente che
+\begin{displaymath}
+    P(E)=\sum_{i=1}^n P(E\cap F_i)=\sum_{i=1}^n P(E|F_i)P(F_i)
+\end{displaymath}
+Da questa \textbf{formula di fattorizzazione} è possibile ricavare la \textbf{formula di Bayes}, che afferma che
+\begin{displaymath}
+    P(F_j|E)=\frac{P(F_j \cap E)}{P(E)}=\frac{P(E|F_j)P(F_j)}{P(E|F_i)P(F_i)}
+\end{displaymath}
 \subsection{Eventi indipendenti}
 Due eventi si dicono indipendenti quando il risultato di uno non influenza l'altro. In altre parole, significa che avendo due eventi E ed F, se so che F è accaduto, la probabilità che accada E non cambia.
 \begin{displaymath}

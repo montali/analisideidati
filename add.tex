@@ -130,7 +130,7 @@ Risulta evidente che
 \end{displaymath}
 Da questa \textbf{formula di fattorizzazione} è possibile ricavare la \textbf{formula di Bayes}, che afferma che
 \begin{displaymath}
-    P(F_j|E)=\frac{P(F_j \cap E)}{P(E)}=\frac{P(E|F_j)P(F_j)}{P(E|F_i)P(F_i)}
+    P(F_j|E)=\frac{P(F_j \cap E)}{P(E)}=\frac{\sum_i P(E|F_j)P(F_j)}{\sum_i P(E|F_i)P(F_i)}
 \end{displaymath}
 \subsection{Eventi indipendenti}
 Due eventi si dicono indipendenti quando il risultato di uno non influenza l'altro. In altre parole, significa che avendo due eventi E ed F, se so che F è accaduto, la probabilità che accada E non cambia.
@@ -394,6 +394,10 @@ Si noti che la somma delle probabilità di tutti i valori possibili è ovviament
     \sum_iP(X=i)=[p+(1-p)]^n=1
 \end{displaymath}
 Osserviamo che se $X_1$ e $X_2$ sono binomiali di parametri $(n_1,p)$ e $(n_2,p)$ e sono indipendenti, allora la somma $X_1+X_2$ è binomiale di parametri $(n_1+n_2,p)$.
+Sappiamo inoltre che
+\begin{displaymath}
+    E[X]=np\hspace{20px}Var(X)=np(1-p)
+\end{displaymath}
 \subsubsection{Calcolo esplicito della distribuzione binomiale}
 Supponiamo che X sia binomiale di parametri $(n,p)$. Per poter calcolare operativamente la funzione di ripartizione:
 \begin{displaymath}
@@ -1041,7 +1045,7 @@ per una costante $c$ assegnata. Il test che costruiamo è di tipo condizionale, 
 \end{displaymath}
 dove Y è la binomiale.
 \section{Regressione}
-Spesso vogliamo determinare le relazioni tra variabili, piuttosto che informazioni sulle stesse. Sarà quindi necessario avere più ingressi $x_1,...,x_r$, ed una sola uscita $Y$. Il modello suppose che la risposta sia in funzione degli ingressi; per questo Y è anche detta variabile dipendente, mentre le $x$, indipendenti. La più semplice relazione che è possibile immaginare è quella lineare; essa si presenta quando per delle opportune costanti $\beta_0,...,\beta_r$ vale l'equazione
+Spesso vogliamo determinare le relazioni tra variabili, piuttosto che informazioni sulle stesse. Sarà quindi necessario avere più ingressi $x_1,...,x_r$, ed una sola uscita $Y$. Il modello suppone che la risposta sia in funzione degli ingressi; per questo Y è anche detta variabile dipendente, mentre le $x$, indipendenti. La più semplice relazione che è possibile immaginare è quella lineare; essa si presenta quando per delle opportune costanti $\beta_0,...,\beta_r$ vale l'equazione
 \begin{displaymath}
     Y=\beta_0+\beta_1 x_1+\beta_2x_2+...+\beta_rx_r
 \end{displaymath}
@@ -1161,7 +1165,7 @@ ricaviamo quindi gli intervalli di confidenza
     A+Bx_0 \pm t_{\frac{\gamma}{2},n-2}\sqrt{\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}}\sqrt{\frac{SS_R}{n-2}}
 \end{displaymath}
 \subsubsection{Intervallo di predizione di una risposta futura}
-Ipotizziamo ora di voler trovare non un valore medio di $\alpha+\beta x$, quanto un singolo valore dato un ingresso specifico. Lo stimatore adatto sarebbe quello della sua media $A+Bx_0$. Se volessimo però un intervallo di valori che contenga ala risposta con un determinato livello di confidenza?
+Ipotizziamo ora di voler trovare non un valore medio di $\alpha+\beta x$, quanto un singolo valore dato un ingresso specifico. Lo stimatore adatto sarebbe quello della sua media $A+Bx_0$. Se volessimo però un intervallo di valori che contenga la risposta con un determinato livello di confidenza?
 Denotiamo semplicemente Y, la risposta futura con un livello di ingresso $x_0$, e consideriamo la distribuzione di probabilità di $Y-A-Bx_0$, cioè la differenza tra risposta e valore predetto. Sappiamo per ipotesi che Y è normale di parametri $\alpha+\beta x_0$ e $\sigma^2$. Sappiamo inoltre da prima che 
 \begin{displaymath}
     A+Bx_0 \sim \mathcal{N}\left(\alpha+\beta x_0, \sigma^2\left[\frac{1}{n}+\frac{(\overline{x}-x_0)^2}{S_{xx}}\right]\right)
@@ -1240,7 +1244,7 @@ Per determinarli calcoliamo le derivate parziali rispetto a $B_0,...,B_r$ e le p
     \end{cases}
 \end{displaymath}
 La scelta del grado va svolta studiando il diagramma di dispersione, che spesso può darne un'idea.
-\subsection{Regressione lienare multipla}
+\subsection{Regressione lineare multipla}
 Nella gran parte delle applicazioni, la risposta può essere predetta in maniera migliore se, al posto di basarsi su una singola variabile, se ne utilizzano diverse. Studiamo il modello di regressione con $k$ variabili indipendenti, la risposta è legata loro tramite una relazione lineare
 \begin{displaymath}
     Y=\beta_0+\beta_1 x_1 + ... + \beta_k x_k + e
